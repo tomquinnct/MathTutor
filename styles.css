@@ -1,0 +1,138 @@
+
+body{
+background-color:#0f766e;
+color:white;
+font-family:Arial, Helvetica, sans-serif;
+margin:0;
+padding:0;
+line-height:1.6;
+}
+
+header{
+background:#134e4a;
+padding:20px;
+text-align:center;
+}
+
+.item_name {
+  font-family: "Georgia", serif;
+  font-size: 25px;
+  font-weight:bold;
+  text-align:center;
+  color:blue;
+}
+
+.pay_text_box {
+  font-family: "Georgia", serif;
+  font-size: 25px;
+  font-weight:bold;
+  text-align:center;
+  color:blue;
+}
+
+.payBtn {
+  font-family: "Georgia", serif;
+  font-size: 25px;
+  font-weight:bold;
+  text-align:center;
+  color:blue;
+}
+
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.container{
+width:90%;
+max-width:1000px;
+margin:auto;
+padding:20px;
+color:blue;
+}
+
+.paycontainer{
+  font-family: "Georgia", serif;
+  font-size: 25px;
+  font-weight:bold;
+  text-align:center;
+  color:blue;
+} 
+
+
+.hero{
+text-align:center;
+padding:60px 20px;
+background:#115e59;
+}
+
+.cta-button{
+display:inline-block;
+margin-top:20px;
+padding:12px 25px;
+background:white;
+color:#0f766e;
+font-weight:bold;
+text-decoration:none;
+border-radius:6px;
+}
+
+.steps{
+text-align:center;
+margin-top:60px;
+}
+
+.step-grid{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:30px;
+margin-top:25px;
+}
+
+.step{
+background:#134e4a;
+padding:25px;
+border-radius:8px;
+}
+
+.stepsA{
+text-align:left;
+margin-top:60px;
+}
+
+.step-gridA{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+margin-top:25px;
+}
+
+.stepA{
+background:#134e4a;
+padding:25px;
+border-radius:8px;
+}
+
+
+footer{
+background:#134e4a;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+h1,h2,h3{
+letter-spacing:.5px;
+}
+
+p{
+font-size:1.05rem;
+}
+
+@media(max-width:800px){
+.step-grid{
+grid-template-columns:1fr;
+}
+}

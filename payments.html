@@ -1,0 +1,91 @@
+ <!DOCTYPE html>
+<html>
+<head>
+
+<title>Tutoring Payments</title>
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+<header>
+<h1>Online Math Tutoring with Tom Quinn</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="why-online-tutoring-works.html">Why Online Tutoring</a>
+<a href="services.html">Courses</a>
+<a href="contact.html">Contact</a>
+<a href="payments.html">Payments and Scheduling</a>
+<a href="student-successs-stories.html"> Successs stories </a>
+<a href="parent-faq.html"> F A Q </a>
+</nav>
+
+<h1>Secure Tutoring Payment and Scheduling</h1>
+
+</header>
+
+<div class="paycontainer">
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+ 
+  <input type="hidden" name="cmd" value="_xclick">
+  <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL">
+  <input type="hidden" name="currency_code" value="USD">
+
+  <select class="item_name" name="item_name">
+    <option value="Single Session" data-price="75.00">2 Half Hour Sessions $75</option>
+    <option value="5 Session Package" data-price="350.00">10 Half Hour Sessions $350</option>
+    <option value="10 Session Package" data-price="650.00">20 Half Hour Sessions $650</option>
+  </select>
+
+  <input class="pay_text_box" type="text" name="amount" value="$75.00" readonly>
+
+  <button class="payBtn" id="payBtn" type="submit">Pay $75.00</button>
+
+</form>
+
+</div>
+
+<script>
+  const select = document.querySelector('.item_name');
+  const amountBox = document.querySelector('input[name="amount"]');
+  const payBtn = document.getElementById('payBtn');
+
+  function updatePayment() {
+    const selectedOption = select.options[select.selectedIndex];
+    const price = selectedOption.dataset.price;
+
+    amountBox.value = `$` + price;
+    payBtn.textContent = `Pay $${price}`;
+  }
+
+  // Run once on load (in case default changes later)
+  updatePayment();
+
+  // Update on change
+  select.addEventListener('change', updatePayment);
+
+
+payBtn.addEventListener('click', function() {
+  payBtn.disabled = true;
+  payBtn.textContent = "Processing...";
+});
+
+</script>
+
+<section style="max-width:900px;margin:auto;">
+  <h2>Book a Session</h2>
+ 
+  <div class="calendly-inline-widget "
+       data-url="https://calendly.com/mathtutor-tomquinn/30min"
+       style="min-width:320px;height:750px;">
+  </div>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+</section>
+
+</body>
+</html>
