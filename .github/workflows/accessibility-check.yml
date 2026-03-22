@@ -1,4 +1,9 @@
-name: Accessibility Checks
+- name: Run accessibility tests on all pages
+  run: |
+    for file in *.html; do
+      echo "Checking $file"
+      pa11y "$file"
+    donename: Accessibility Checks
 
 on:
   push:
