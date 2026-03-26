@@ -43,9 +43,23 @@ header *{
 
 item_select label {
       color: white;
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 12px;
+      font-weight: normal;
       } 
+      
+displayAmount label {
+      color: white;
+      font-size: 12px;
+      font-weight: normal;
+      } 
+      
+payBtnLabellabel {
+      color: white;
+      font-size: 12px;
+      font-weight: normal;
+      }     
+      
+      
       
 .item_name {
   /* Light neutral background */
