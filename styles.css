@@ -41,19 +41,19 @@ header *{
   Subtle bevel for a slightly raised panel look (not a button)
 */
 
-item_select label {
+item_select_L label {
       color: white;
       font-size: 12px;
       font-weight: normal;
       } 
       
-displayAmount label {
+displayAmount_L label {
       color: white;
       font-size: 12px;
       font-weight: normal;
       } 
       
-payBtnLabellabel {
+payBtn_L label {
       color: white;
       font-size: 12px;
       font-weight: normal;
