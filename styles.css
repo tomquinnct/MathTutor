@@ -42,19 +42,19 @@ header *{
 */
 
 .item_select_L label {
-      color: white;
+      color: red;
       font-size: 12px;
       font-weight: normal;
       } 
       
 .displayAmount_L label {
-      color: white;
+      color: red;
       font-size: 12px;
       font-weight: normal;
       } 
       
 .payBtn_L label {
-      color: white;
+      color: red;
       font-size: 12px;
       font-weight: normal;
       }     
