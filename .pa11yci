@@ -10,6 +10,8 @@
     }
   },
   "urls": [
-    "file:///Users/tomquinn/Desktop/HighSchoolTutoring/MathTutorWebsiteHTML/websitefiles/index.html"
-  ]
+  "file:///Users/tomquinn/Desktop/HighSchoolTutoring/MathTutorWebsiteHTML/websitefiles/index.html", 
+ "file:///Users/tomquinn/Desktop/HighSchoolTutoring/MathTutorWebsiteHTML/websitefiles/payments.html",
+  "file:///Users/tomquinn/Desktop/HighSchoolTutoring/MathTutorWebsiteHTML/websitefiles/contact.html"
+]
 }
