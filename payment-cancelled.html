@@ -1,143 +1,50 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutoring Payments Cancelled</title>
-  <link rel="stylesheet" href="styles.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Cancelled</title>
   <style>
-    .locked {
-      opacity: 0.5;
-      pointer-events: none;
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 20px;
+      line-height: 1.6;
     }
 
-    .hidden {
-      display: none;
+    .message-box {
+      background: #f8f8f8;
+      border-left: 5px solid #999;
+      padding: 20px;
+      border-radius: 6px;
     }
 
-    .notice {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 15px;
-      background: #f4f4f4;
-      border-left: 4px solid #555;
-      font-size: 1rem;
+    h1 {
+      margin-top: 0;
+    }
+
+    a.button-link {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 16px;
+      text-decoration: none;
+      background: #222;
+      color: #fff;
+      border-radius: 4px;
+    }
+
+    a.button-link:hover {
+      opacity: 0.9;
     }
   </style>
 </head>
-
 <body>
-<header>
-<h1>Online Math Tutoring with Tom Quinn</h1>
-
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="why-online-tutoring-works.html">Why Online Tutoring</a>
-<a href="sales.html">The Process</a>
-<a href="services.html">Courses</a>
-<a href="contact.html">Contact</a>
-<a href="payments.html">Payments and Scheduling</a>
-<a href="student-successs-stories.html"> Success stories </a>
-<a href="parent-faq.html"> F A Q </a>
-</nav>
-  <h2>Payment-Cancelled</h2>
-</header>
-
-
-  <div class="paycontainer">
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-      <input type="hidden" name="cmd" value="_xclick">
-      <input type="hidden" name="business" value="mathtutor-tomquinn@gmail.com">
-      <input type="hidden" name="currency_code" value="USD">
-
-      <!-- PayPal return URLs -->
-      <input type="hidden" name="return" value="https://calendly.com/mathtutor-tomquinn/30min?paid=true">
-      <input type="hidden" name="cancel_return" value="https://calendly.com/mathtutor-tomquinn/30min?paid=false">
-
- <!--  <label for="item_name">Choose a tutoring package:</label> -->
-
-      <h2>Choose a tutoring package:</h2>
-      
-      <select class="item_name" id="item_name" name="item_name">
-        <option value="1 Half Hour TEST Sessions" data-price="1.00">1 Half Hour TEST Sessions — $1</option>
-        <option value="2 Half Hour Sessions" data-price="75.00">2 Half Hour Sessions — $75</option>
-        <option value="10 Half Hour Sessions" data-price="350.00">10 Half Hour Sessions — $350</option>
-        <option value="20 Half Hour Sessions" data-price="650.00">20 Half Hour Sessions — $650</option>
-      </select>
-
-      <input type="hidden" name="amount" id="paypalAmount" value="75.00">
-      <input class="pay_text_box" type="text" id="displayAmount" value="$75.00" readonly>
-
-      <button class="payBtn" id="payBtn" type="submit">  Pay $75.00  </button>
-    </form>
+  <div class="message-box">
+    <h1>Payment Cancelled</h1>
+    <p>Your payment was not completed, and no tutoring sessions were added.</p>
+    <p>You can return to the payments page whenever you are ready.</p>
+    <a class="button-link" href="payments.html">Return to Payments</a>
   </div>
- 
-  <div id="bookingNotice" class="notice">
-   Payment Failed to process, Please check your email for details and try again.
-  </div>
-
-  <section id="bookingSection" class="locked hidden" style="max-width:900px;margin:auto;">
-    <h2>Book a Session</h2>
-
-    <div
-      class="calendly-inline-widget"
-      data-url="https://calendly.com/mathtutor-tomquinn/30min"
-      style="min-width:320px;height:750px;">
-    </div>
-  </section>
-
-  <script>
-    const select = document.querySelector('.item_name');
-    const paypalAmount = document.getElementById('paypalAmount');
-    const displayAmount = document.getElementById('displayAmount');
-    const payBtn = document.getElementById('payBtn');
-    const bookingSection = document.getElementById('bookingSection');
-    const bookingNotice = document.getElementById('bookingNotice');
-
-    function updatePayment() {
-      const selectedOption = select.options[select.selectedIndex];
-      const price = selectedOption.dataset.price;
-
-      paypalAmount.value = price;
-      displayAmount.value = `$${price}`;
-      payBtn.textContent = `Pay $${price}`;
-      payBtn.disabled = false;
-    }
-
-    function checkPaymentStatus() {
-      const params = new URLSearchParams(window.location.search);
-      const paid = params.get('paid');
-
-      if (paid === 'true') {
-        bookingSection.classList.remove('hidden', 'locked');
-        bookingNotice.classList.add('hidden');
-
-        // Load Calendly only after payment
-        const calendlyScript = document.createElement('script');
-        calendlyScript.src = 'https://assets.calendly.com/assets/external/widget.js';
-        calendlyScript.async = true;
-        document.body.appendChild(calendlyScript);
-      } else {
-        bookingSection.classList.add('hidden', 'locked');
-        bookingNotice.classList.remove('hidden');
-      }
-    }
-
-    updatePayment();
-    checkPaymentStatus();
-
-    select.addEventListener('change', updatePayment);
-
-    const form = document.querySelector('form');
-
-    form.addEventListener('submit', function() {
-      payBtn.textContent = "Processing...";
-      payBtn.disabled = true;
-    });
-
-  </script>
-
 </body>
 </html>

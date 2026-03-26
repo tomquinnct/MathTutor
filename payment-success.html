@@ -1,124 +1,30 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutoring Payments Success</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    .locked {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-    .hidden {
-      display: none;
-    }
-    .notice {
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 15px;
-      background: #f4f4f4;
-      border-left: 4px solid #555;
-      font-size: 1rem;
-    }
-  </style>
+  <title>Payment Successful</title>
 </head>
 <body>
-  <header>
-    <h1>Online Math Tutoring with Tom Quinn</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="why-online-tutoring-works.html">Why Online Tutoring</a>
-      <a href="sales.html">The Process</a>
-      <a href="services.html">Courses</a>
-      <a href="contact.html">Contact</a>
-      <a href="payments.html">Payments and Scheduling</a>
-      <a href="student-successs-stories.html">Success stories</a>
-      <a href="parent-faq.html">FAQ</a>
-    </nav>
-    <h2>Payment Successful</h2>
-  </header>
+  <p>Payment received. Redirecting you to scheduling...</p>
 
-  <div class="paycontainer">
-    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-      <input type="hidden" name="cmd" value="_xclick" />
-      <input type="hidden" name="business" value="mathtutor-tomquinn@gmail.com" />
-      <input type="hidden" name="currency_code" value="USD" />
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const sessions = parseInt(params.get('sessions') || '0', 10);
+  const packageName = params.get('package') || '';
+  const amount = params.get('amount') || '';
 
-  <!-- When you publish a site using GitHub Pages, they automatically assign you a default domain:
-  User/organization site:
-         https://<your-username>.github.io
-   Project site:
-         https://<your-username>.github.io/<repo-name>/
-         
-   https://github.com/mathtutortomquinn-glitch/MathTutor.github.io
+  const existing = parseInt(localStorage.getItem('sessionsRemaining') || '0', 10);
 
-https://github.com/mathtutortomquinn-glitch/MathTutor.github.io/websitefiles  
-   
- <input type="hidden" name="return" value="https://yourdomain.com/payment-success.html" />
- <input type="hidden" name="cancel_return" value="https://yourdomain.com/payment-cancelled.html" />
- 
-   -->
-      <input type="hidden" name="return" value="https://github.com/mathtutortomquinn-glitch/MathTutor.github.io/websitefiles/payment-success.html" />
-      <input type="hidden" name="cancel_return" value="https://github.com/mathtutortomquinn-glitch/MathTutor.github.io/websitefiles/payment-cancelled.html" />
+  if (sessions > 0) {
+    localStorage.setItem('sessionsRemaining', String(existing + sessions));
+    localStorage.setItem('lastPackageName', packageName);
+    localStorage.setItem('lastPaymentAmount', amount);
+  }
 
-      <h2>Choose a tutoring package:</h2>
+  // Add ?paid=true flag
+  window.location.href = 'payments.html?paid=true';
+</script>
 
-      <select class="item_name" id="item_name" name="item_name">
-        <option value="1 Half Hour TEST Session" data-price="1.00">1 Half Hour TEST Session — $1.00</option>
-        <option value="2 Half Hour Sessions" data-price="75.00">2 Half Hour Sessions — $75.00</option>
-        <option value="10 Half Hour Sessions" data-price="350.00">10 Half Hour Sessions — $350.00</option>
-        <option value="20 Half Hour Sessions" data-price="650.00">20 Half Hour Sessions — $650.00</option>
-      </select>
-
-      <input type="hidden" name="amount" id="paypalAmount" value="1.00" />
-      <input class="pay_text_box" type="text" id="displayAmount" value="$1.00" readonly />
-      <button class="payBtn" id="payBtn" type="submit">Pay $1.00</button>
-    </form>
-  </div>
-
-  <div id="bookingNotice" class="notice">
-    Payment was Successful 
-  </div>
-
-  <section id="bookingSection" class="locked hidden" style="max-width:900px;margin:auto;">
-  
-<p><strong>Book a Session</strong>
-<div class="calendly-inline-widget"
-     data-url="https://calendly.com/mathtutor-tomquinn/30min"
-     style="min-width:320px;height:700px;">
-</div>
-
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-</p>
-
-  </section>
-
-  <script>
-    const select = document.querySelector('.item_name');
-    const paypalAmount = document.getElementById('paypalAmount');
-    const displayAmount = document.getElementById('displayAmount');
-    const payBtn = document.getElementById('payBtn');
-
-    function updatePayment() {
-      const selectedOption = select.options[select.selectedIndex];
-      const price = selectedOption.dataset.price;
-
-      paypalAmount.value = price;
-      displayAmount.value = `$${price}`;
-      payBtn.textContent = `Pay $${price}`;
-      payBtn.disabled = false;
-    }
-
-    updatePayment();
-
-    select.addEventListener('change', updatePayment);
-
-    document.querySelector('form').addEventListener('submit', function () {
-      payBtn.textContent = 'Processing...';
-      payBtn.disabled = true;
-    });
-  </script>
 </body>
 </html>
