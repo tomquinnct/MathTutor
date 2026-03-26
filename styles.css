@@ -41,7 +41,7 @@ header *{
   Subtle bevel for a slightly raised panel look (not a button)
 */
 
-label[for="item_select"] {
+item_select label {
       color: #1a73e8;
       font-size: 18px;
       font-weight: bold;
