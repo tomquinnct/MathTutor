@@ -43,19 +43,19 @@ header *{
 
 .item_select {
   color: white;
-      font-size: 18px;
+      font-size: 24px;
   font-weight: normal;
 }
       
 .displayAmount {
       color: white;
-      font-size: 18px;
+      font-size: 24px;
       font-weight: normal;
       } 
       
 .payBtn_Q {
-     color: blue;
-      font-size: 18px;
+     color: white;
+      font-size: 24px;
       font-weight: normal;
       }     
        
@@ -65,7 +65,7 @@ header *{
   background: linear-gradient(#6cc070, #4CAF50);
 
   /* Text styling */
-  color: yellow;
+  color: white;
   padding: 12px 18px;
   font-weight: bold;
   text-align: center;
