@@ -1,0 +1,26 @@
+name: Accessibility Checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  accessibility:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pa11y
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nodejs npm
+          npm install -g pa11y
+
+      - name: Run accessibility tests on all pages
+        run: |
+          for file in *.html; do
+            echo "Checking $file"
+            pa11y "$file"
+          done
