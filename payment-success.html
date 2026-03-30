@@ -3,28 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payment Successful</title>
+  <title>Redirecting to Payments</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    (function () {
+      const currentUrl = new URL(window.location.href);
+      const target = new URL('https://mathtutortomquinn-glitch.github.io/MathTutor/payments.html');
+
+      target.search = currentUrl.search;
+      window.location.replace(target.toString());
+    })();
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .message {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      border-left: 4px solid #2e7d32;
+      background: #eef8ee;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-  <p>Payment received. Redirecting you to scheduling...</p>
+  <div class="message">
+    Redirecting you to the Payments and Scheduling page...
+    <span id="manualLinkWrap">
+      If you are not redirected automatically, <a id="manualLink" href="payments.html">click here</a>.
+    </span>
+  </div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const sessions = parseInt(params.get('sessions') || '0', 10);
-  const packageName = params.get('package') || '';
-  const amount = params.get('amount') || '';
+  <script>
+    (function () {
+      const manualLink = document.getElementById('manualLink');
+      if (manualLink) {
+        manualLink.href = 'https://mathtutortomquinn-glitch.github.io/MathTutor/payments.html' + window.location.search;
+      }
+    })();
+  </script>
 
-  const existing = parseInt(localStorage.getItem('sessionsRemaining') || '0', 10);
-
-  if (sessions > 0) {
-    localStorage.setItem('sessionsRemaining', String(existing + sessions));
-    localStorage.setItem('lastPackageName', packageName);
-    localStorage.setItem('lastPaymentAmount', amount);
-  }
-
-  // Add ?paid=true flag
-  window.location.href = 'payments.html?paid=true';
-</script>
-
+  <noscript>
+    <div class="message" style="margin-top: 20px;">
+      JavaScript is required to preserve payment details during redirect.
+      Please return to the <a href="payments.html">Payments and Scheduling page</a>.
+    </div>
+  </noscript>
 </body>
 </html>

@@ -5,44 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tutoring Payments</title>
   <link rel="stylesheet" href="styles.css" />
- <style>
-  .locked {
-    opacity: 0.5;
-    pointer-events: none;
-  }
+  <style>
+    .locked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
-  .hidden {
-    display: none;
-  }
+    .hidden {
+      display: none;
+    }
 
-  .notice {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 16px 18px;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 8px;
-    box-sizing: border-box;
-  }
+    .notice {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 16px 18px;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
 
-  .notice-neutral {
-    background: #f4f4f4;
-    border-left: 4px solid #555;
-    color: #222;
-  }
+    .notice-neutral {
+      background: #f4f4f4;
+      border-left: 4px solid #555;
+      color: #222;
+    }
 
-  .notice-success {
-    background: #eef8ee;
-    border-left: 4px solid #2e7d32;
-    color: #1f4d22;
-  }
+    .notice-success {
+      background: #eef8ee;
+      border-left: 4px solid #2e7d32;
+      color: #1f4d22;
+    }
 
-  .notice-warning {
-    background: #fff8e8;
-    border-left: 4px solid #b7791f;
-    color: #6b4e16;
-  }
-</style>
+    .notice-warning {
+      background: #fff8e8;
+      border-left: 4px solid #b7791f;
+      color: #6b4e16;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -55,14 +55,14 @@
       <a href="services.html">Courses</a>
       <a href="contact.html">Contact</a>
       <a href="payments.html">Payments and Scheduling</a>
-      <a href="student-successs-stories.html"> Success stories </a>
+      <a href="student-successs-stories.html">Success stories</a>
       <a href="parent-faq.html">FAQ</a>
     </nav>
     <h2>Secure Tutoring Payment and Scheduling</h2>
   </header>
 
   <div class="paycontainer">
- <!-- FOR TEST SANDBOX    action="https://www.sandbox.paypal.com/cgi-bin/webscr" -->
+    <!-- FOR TEST SANDBOX action="https://www.sandbox.paypal.com/cgi-bin/webscr" -->
     <form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
       <input type="hidden" name="cmd" value="_xclick" />
       <input type="hidden" name="business" value="mathtutor.tomquinn@gmail.com" />
@@ -72,19 +72,21 @@
       <input type="hidden" name="currency_code" value="USD" />
       <input type="hidden" name="no_note" value="1" />
       <input type="hidden" name="bn" value="PP-BuyNowBF" />
+
       <input
         type="hidden"
         name="return"
         id="returnUrl"
-         value="https://mathtutortomquinn-glitch.github.io/MathTutor/payment-success.html" 
+        value="https://mathtutortomquinn-glitch.github.io/MathTutor/payments.html"
       />
+
       <input
         type="hidden"
         name="cancel_return"
-        value="https://mathtutortomquinn-glitch.github.io/MathTutor/payment-cancelled.html" 
+        value="https://mathtutortomquinn-glitch.github.io/MathTutor/payment-cancelled.html"
       />
-      
-      <label class="item_select" for="item_select_L">Please Choose a tutoring package :</label>
+
+      <label class="item_select" for="item_select">Please Choose a tutoring package:</label>
       <select class="item_name" id="item_select">
         <option value="1 Half Hour TEST Session" data-price="1.00" data-sessions="1">
           1 Half Hour TEST Session — $1.00
@@ -99,187 +101,234 @@
           20 Half Hour Sessions — $650.00
         </option>
       </select>
-       <br>
-      <label class="displayAmount" for="displayAmount_L">  Purchase Total amount :</label>
-      <input class="pay_text_box" type="text" id="displayAmount" value="$1.00" readonly />
+
       <br>
-      <label class="payBtn_Q" for="payBtn_L">    Submit :</label>
+
+      <label class="displayAmount" for="displayAmount">Purchase Total amount:</label>
+      <input class="pay_text_box" type="text" id="displayAmount" value="$1.00" readonly />
+
+      <br>
+
+      <label class="payBtn_Q" for="payBtn">Submit:</label>
       <button class="payBtn" type="submit" id="payBtn">Pay $1.00</button>
     </form>
   </div>
-  
+
   <div id="paymentSuccessBanner" class="notice notice-success hidden"></div>
+
   <div id="bookingNotice" class="notice notice-neutral">
-  Please purchase a tutoring package to unlock scheduling for your available sessions.
+    Please purchase a tutoring package to unlock scheduling for your available sessions.
   </div>
 
-  <div id="sessionsNoticehidden" class="notice notice-success hidden"></div>
-  <div id="sessionsNotice" class="notice hidden"></div>
+  <div id="sessionsNotice" class="notice notice-success hidden"></div>
 
-  <section id="bookingSection" class="locked hidden" style="max-width:900px;margin:auto;">
+  <section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
     <h2>Book a Session</h2>
     <div
       class="calendly-inline-widget"
       data-url="https://calendly.com/mathtutor-tomquinn/30min"
-      style="min-width:320px;height:750px;">
+      style="min-width:320px; height:750px;">
     </div>
   </section>
 
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
- <script>
-  const form = document.getElementById('paypalForm');
-  const select = document.getElementById('item_select');
-  const paypalAmount = document.getElementById('paypalAmount');
-  const displayAmount = document.getElementById('displayAmount');
-  const payBtn = document.getElementById('payBtn');
-  const itemNameHidden = document.getElementById('item_name_hidden');
-  const returnUrl = document.getElementById('returnUrl');
+  <script>
+    const form = document.getElementById('paypalForm');
+    const select = document.getElementById('item_select');
+    const paypalAmount = document.getElementById('paypalAmount');
+    const displayAmount = document.getElementById('displayAmount');
+    const payBtn = document.getElementById('payBtn');
+    const itemNameHidden = document.getElementById('item_name_hidden');
+    const returnUrl = document.getElementById('returnUrl');
 
-  const bookingSection = document.getElementById('bookingSection');
-  const bookingNotice = document.getElementById('bookingNotice');
-  const sessionsNotice = document.getElementById('sessionsNotice');
-  const successBanner = document.getElementById('paymentSuccessBanner');
+    const bookingSection = document.getElementById('bookingSection');
+    const bookingNotice = document.getElementById('bookingNotice');
+    const sessionsNotice = document.getElementById('sessionsNotice');
+    const successBanner = document.getElementById('paymentSuccessBanner');
 
-  // ---------------------------
-  // PAYMENT UI
-  // ---------------------------
-  function getSelectedOption() {
-    return select.options[select.selectedIndex];
-  }
+    const SITE_BASE = 'https://mathtutortomquinn-glitch.github.io/MathTutor';
+    const PAYMENTS_PAGE = `${SITE_BASE}/payments.html`;
+    const CANCEL_PAGE = `${SITE_BASE}/payment-cancelled.html`;
 
-  function updatePayment() {
-    const selectedOption = getSelectedOption();
-    const price = parseFloat(selectedOption.dataset.price).toFixed(2);
-    const name = selectedOption.value;
-    const sessions = parseInt(selectedOption.dataset.sessions, 10);
-
-    paypalAmount.value = price;
-    itemNameHidden.value = name;
-    displayAmount.value = `$${price}`;
-    payBtn.textContent = `Pay $${price}`;
-
-    const successUrl = new URL('https://mathtutortomquinn.github.io/MathTutor/payment-success.html');
-    successUrl.searchParams.set('package', name);
-    successUrl.searchParams.set('sessions', sessions);
-    successUrl.searchParams.set('amount', price);
-
-    returnUrl.value = successUrl.toString();
-  }
-
-  // ---------------------------
-  // SESSION STORAGE
-  // ---------------------------
-  function getSessionsRemaining() {
-    return parseInt(localStorage.getItem('sessionsRemaining') || '0', 10);
-  }
-
-  function setSessionsRemaining(count) {
-    localStorage.setItem('sessionsRemaining', String(count));
-  }
-
-  function clearSessionsRemaining() {
-    localStorage.removeItem('sessionsRemaining');
-  }
-
-  // ---------------------------
-  // UI VISIBILITY
-  // ---------------------------
-  function updateBookingVisibility() {
-    const sessionsRemaining = getSessionsRemaining();
-
-    if (sessionsRemaining > 0) {
-      bookingSection.classList.remove('locked', 'hidden');
-      bookingNotice.classList.add('hidden');
-
-      sessionsNotice.textContent =
-        `Sessions remaining: ${sessionsRemaining}. You may continue scheduling.`;
-      sessionsNotice.classList.remove('hidden');
-    } else {
-      bookingSection.classList.add('locked', 'hidden');
-      bookingNotice.classList.remove('hidden');
-      sessionsNotice.classList.add('hidden');
-      sessionsNotice.textContent = '';
-    }
-  }
-
-  function decrementSessionCount() {
-    const current = getSessionsRemaining();
-
-    if (current > 1) {
-      setSessionsRemaining(current - 1);
-    } else {
-      clearSessionsRemaining();
+    // ---------------------------
+    // PAYMENT UI
+    // ---------------------------
+    function getSelectedOption() {
+      return select.options[select.selectedIndex];
     }
 
-    updateBookingVisibility();
+    function updatePayment() {
+      const selectedOption = getSelectedOption();
+      const price = parseFloat(selectedOption.dataset.price).toFixed(2);
+      const name = selectedOption.value;
+      const sessions = parseInt(selectedOption.dataset.sessions, 10);
+
+      paypalAmount.value = price;
+      itemNameHidden.value = name;
+      displayAmount.value = `$${price}`;
+      payBtn.textContent = `Pay $${price}`;
+
+      const successUrl = new URL('https://mathtutortomquinn-glitch.github.io/MathTutor/payments.html');
+      successUrl.searchParams.set('paid', 'true');
+      successUrl.searchParams.set('package', name);
+      successUrl.searchParams.set('sessions', String(sessions));
+      successUrl.searchParams.set('amount', price);
+      returnUrl.value = successUrl.toString();
+    }
+
+    // ---------------------------
+    // SESSION STORAGE
+    // ---------------------------
+    function getSessionsRemaining() {
+      return parseInt(localStorage.getItem('sessionsRemaining') || '0', 10);
+    }
+
+    function setSessionsRemaining(count) {
+      localStorage.setItem('sessionsRemaining', String(count));
+    }
+
+    function clearSessionsRemaining() {
+      localStorage.removeItem('sessionsRemaining');
+    }
+
+    // ---------------------------
+    // APPLY SUCCESS FROM URL
+    // ---------------------------
+function applySuccessfulPaymentFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const paid = params.get('paid');
+  const packageName = params.get('package') || '';
+  const amount = params.get('amount') || '';
+  const sessionsPurchased = parseInt(params.get('sessions') || '0', 10);
+
+  if (paid !== 'true' || sessionsPurchased <= 0) {
+    return;
   }
 
-  // ---------------------------
-  // SUCCESS BANNER
-  // ---------------------------
-  function showPaymentSuccessBanner() {
-    const params = new URLSearchParams(window.location.search);
-    const fromPayment = params.get('paid');
+  const paymentSignature = `paid:${paid}|package:${packageName}|amount:${amount}|sessions:${sessionsPurchased}`;
+  const alreadyProcessed = sessionStorage.getItem('lastProcessedPaymentSignature');
 
-    if (fromPayment === 'true') {
-      const sessions = getSessionsRemaining();
-      const packageName = localStorage.getItem('lastPackageName') || '';
-
-      successBanner.textContent =
-        `Payment successful. You now have ${sessions} session${sessions === 1 ? '' : 's'} available to schedule.`;
-
-      successBanner.classList.remove('hidden');
-
-      // Clean URL so it doesn't repeat on refresh
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
+  if (alreadyProcessed === paymentSignature) {
+    return;
   }
 
-  // ---------------------------
-  // INITIAL LOAD
-  // ---------------------------
-  updatePayment();
-  updateBookingVisibility();
-  showPaymentSuccessBanner();
+  const currentSessions = getSessionsRemaining();
+  const newTotal = currentSessions + sessionsPurchased;
 
-  // ---------------------------
-  // EVENTS
-  // ---------------------------
-  select.addEventListener('change', updatePayment);
+  setSessionsRemaining(newTotal);
+  localStorage.setItem('lastPackageName', packageName);
+  localStorage.setItem('lastAmountPaid', amount);
+  localStorage.setItem('lastSessionsPurchased', String(sessionsPurchased));
 
-  form.addEventListener('submit', function () {
-    payBtn.textContent = 'Processing...';
-    payBtn.disabled = true;
-  });
+  sessionStorage.setItem('lastProcessedPaymentSignature', paymentSignature);
+}
 
-  window.addEventListener('pageshow', function (event) {
-    if (event.persisted) {
-      payBtn.disabled = false;
-      updatePayment();
-      updateBookingVisibility();
-      showPaymentSuccessBanner();
+      sessionStorage.setItem('lastProcessedPaymentSignature', paymentSignature);
     }
-  });
 
-  // ---------------------------
-  // CALENDLY EVENT LISTENER
-  // ---------------------------
-  window.addEventListener('message', function (e) {
-    if (e.origin !== 'https://calendly.com') return;
+    // ---------------------------
+    // UI VISIBILITY
+    // ---------------------------
+    function updateBookingVisibility() {
+      const sessionsRemaining = getSessionsRemaining();
 
-    if (e.data.event === 'calendly.event_scheduled') {
-      decrementSessionCount();
+      if (sessionsRemaining > 0) {
+        bookingSection.classList.remove('locked', 'hidden');
+        bookingNotice.classList.add('hidden');
 
-      const remaining = getSessionsRemaining();
-
-      if (remaining > 0) {
-        alert(`Session booked. ${remaining} remaining.`);
+        sessionsNotice.textContent =
+          `Sessions remaining: ${sessionsRemaining}. You may continue scheduling.`;
+        sessionsNotice.classList.remove('hidden');
       } else {
-        alert('Session booked. All sessions used.');
+        bookingSection.classList.add('locked', 'hidden');
+        bookingNotice.classList.remove('hidden');
+        sessionsNotice.classList.add('hidden');
+        sessionsNotice.textContent = '';
       }
     }
-  });
-</script>
+
+    function decrementSessionCount() {
+      const current = getSessionsRemaining();
+
+      if (current > 1) {
+        setSessionsRemaining(current - 1);
+      } else {
+        clearSessionsRemaining();
+      }
+
+      updateBookingVisibility();
+    }
+
+    // ---------------------------
+    // SUCCESS BANNER
+    // ---------------------------
+    function showPaymentSuccessBanner() {
+      const params = new URLSearchParams(window.location.search);
+      const fromPayment = params.get('paid');
+      const packageName = params.get('package') || '';
+      const sessionsPurchased = parseInt(params.get('sessions') || '0', 10);
+      const totalSessions = getSessionsRemaining();
+
+      if (fromPayment === 'true') {
+        successBanner.textContent =
+          `Payment successful${packageName ? ` for ${packageName}` : ''}. ` +
+          `Added ${sessionsPurchased} session${sessionsPurchased === 1 ? '' : 's'}. ` +
+          `You now have ${totalSessions} session${totalSessions === 1 ? '' : 's'} available to schedule.`;
+
+        successBanner.classList.remove('hidden');
+
+        // Clean URL so refresh/back does not repeat payment processing
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+
+    // ---------------------------
+    // INITIAL LOAD
+    // ---------------------------
+    returnUrl.value = PAYMENTS_PAGE;
+    applySuccessfulPaymentFromUrl();
+    updatePayment();
+    updateBookingVisibility();
+    showPaymentSuccessBanner();
+
+    // ---------------------------
+    // EVENTS
+    // ---------------------------
+    select.addEventListener('change', updatePayment);
+
+    form.addEventListener('submit', function () {
+      payBtn.textContent = 'Processing...';
+      payBtn.disabled = true;
+    });
+
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted) {
+        payBtn.disabled = false;
+        updatePayment();
+        updateBookingVisibility();
+        showPaymentSuccessBanner();
+      }
+    });
+
+    // ---------------------------
+    // CALENDLY EVENT LISTENER
+    // ---------------------------
+    window.addEventListener('message', function (e) {
+      if (e.origin !== 'https://calendly.com') return;
+
+      if (e.data.event === 'calendly.event_scheduled') {
+        decrementSessionCount();
+
+        const remaining = getSessionsRemaining();
+
+        if (remaining > 0) {
+          alert(`Session booked. ${remaining} remaining.`);
+        } else {
+          alert('Session booked. All sessions used.');
+        }
+      }
+    });
+  </script>
 </body>
 </html>

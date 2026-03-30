@@ -9,7 +9,7 @@ line-height:1.6;
 }
 
 header{
-  Padding: 80px 20px;
+  padding: 80px 20px;
   text-align:center;
 
   background-image: url("images/math-chalkboard.png");
@@ -34,6 +34,14 @@ header::before{
 header *{
   position: relative;
   z-index: 1;
+}
+ 
+ 
+ header nav{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
  
 /*
@@ -68,6 +76,7 @@ header *{
   /* Text styling */
   color: white;
   padding: 12px 18px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
 
@@ -105,7 +114,7 @@ header *{
   color: white;
   padding: 12px 18px;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   text-align: center;
 
   border: 1px solid #3e8e41;
@@ -141,6 +150,7 @@ header *{
   background: linear-gradient(#6cc070, #4CAF50);
   color: white;
   padding: 12px 18px;
+  font-size: 18px;
   font-weight: bold;
   text-align: center;
   width: 150px;
@@ -156,7 +166,7 @@ header *{
 }
 
 .payBtn:hover {
-  background: black;
+  background: linear-gradient(#4f9f53, #2f7d32);
   color: white;
 }
 
@@ -174,39 +184,39 @@ header *{
   opacity: 0.7;
 }
 
-.notice {
-
-  /* Text styling */
-  color: black;
-  padding: 12px 18px;
-  font-size: 35px;
+.notice{
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 16px 18px;
+  font-size: 1.2rem;
+  line-height: 1.5;
   font-weight: bold;
   text-align: center;
-
-  /* Border helps define the edge */
   border: 1px solid #3e8e41;
   border-radius: 6px;
-}  
-  
+  background: #f4f4f4;
+  color: black;
+  box-sizing: border-box;
+}
 
 header nav a {
   font-family: "Trebuchet MS", sans-serif;
-  font-size: 25px;
+<!-- font-size: 25px;  -->
   font-weight: 500;
   letter-spacing: 0.5px;
 
   /* spacing inside each link */
-  padding: 10px 18px;
+<!--   padding: 10px 18px;     -->
 
   /* border */
   border: 2px solid white;
   border-radius: 6px;
 
   /* spacing between lines of text (if link wraps) */
-  line-height: 3;
+<!--   line-height: 3;    -->
 
   /* prevents awkward line breaks */
-  white-space: nowrap;
+<!--   white-space: nowrap;    -->
 
 }
 
@@ -226,13 +236,12 @@ color:white;
 }
 
 .paycontainer{
-  font-family: "Georgia", serif;
-  margin-top: 40px;
-  font-size: 70px;
-  font-weight:bold;
-  text-align:center;
-  color:white;
-} 
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: white;
+}
 
 
 .hero{
@@ -306,7 +315,7 @@ margin-top:10px;
 h1,h2,h3{
 margin-top:0px;
 letter-spacing:.5px;
-white-space: wrap;
+white-space: normal;
 }
 
 h1 {
@@ -326,8 +335,13 @@ p{
 font-size:1.05rem;
 }
 
-@media(max-width:800px){
-.step-grid{
-grid-template-columns:1fr;
-}
+@media (max-width: 800px){
+  .step-grid{
+  grid-template-columns:1fr;
+  header nav a{
+    font-size: 18px;
+    padding: 8px 12px;
+    line-height: 1.8;
+    margin: 4px;
+  }
 }
