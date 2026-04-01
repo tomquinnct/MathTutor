@@ -353,6 +353,12 @@ a[href^="tel"] {
   text-decoration: none;
 }
 
+.email-link,
+a[href^="mailto"] {
+  color: white !important;
+  text-decoration: none;
+}
+
 @media(max-width:800px){
   .paycontainer{
     width: 94%;
