@@ -263,6 +263,24 @@ background:#115e59;
 }
 
 .cta-button{
+background: linear-gradient(#6cc070, #4CAF50);
+  color: white;
+  padding: 12px 18px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  width: 150px;
+  height: 45px;
+  box-sizing: border-box;
+  border: 1px solid #3e8e41;
+  border-radius: 6px;
+  box-shadow:
+    inset 2px 2px 3px rgba(255,255,255,0.6),
+    inset -2px -2px 3px rgba(0,0,0,0.4),
+    0 3px 4px rgba(0,0,0,0.25);
+  cursor: pointer;
+
+//*
 display:inline-block;
 margin-top:20px;
 padding:20px 25px;
@@ -273,11 +291,12 @@ font-weight:bold;
 text-decoration:none;
 border-radius:6px;
 cursor: pointer;
+*//
 }
 
 .cta-button:hover {
-  background-color: black;
-  color:white;
+  background: linear-gradient(#4f9f53, #2f7d32);
+  color: white;
 }
 
 .steps{
