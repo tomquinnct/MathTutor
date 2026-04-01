@@ -346,6 +346,13 @@ p{
 font-size:1.05rem;
 }
 
+/* Global phone link styling (applies to iPhone) */
+.phone-link,
+a[href^="tel"] {
+  color: white !important;
+  text-decoration: none;
+}
+
 @media(max-width:800px){
   .paycontainer{
     width: 94%;
