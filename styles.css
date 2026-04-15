@@ -3,11 +3,12 @@
 ========================= */
 
 .header {
- 
-  background-image: url("images/Mathematics tutor promotion with call-to-action.png");
-  color: white;
-  padding: 20px;
   text-align: center;
+  padding: 70px 20px;
+  background-image: url("images/Mathematics tutor promotion with call-to-action.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .site-header {
@@ -45,7 +46,7 @@ section {
 .hero {
   text-align: center;
   padding: 70px 20px;
-  background-image: url("images/Mathematics tutor promotion with call-to-action.png");
+/*  background-image: url("images/Mathematics tutor promotion with call-to-action.png"); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
