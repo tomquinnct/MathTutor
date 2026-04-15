@@ -10,12 +10,30 @@ header {
   text-align: center;
 }
 
+.site-header {
+  background: #0f4f4a;
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.site-header nav {
+  margin-top: 10px;
+}
+
+.site-header a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   line-height: 1.6;
 /*  color: #222; */
-  color: green;
+  color: #0f4f4a;
 }
 
 /* Center page content feel */
