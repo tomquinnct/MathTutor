@@ -21,14 +21,13 @@
   background-repeat: no-repeat;
   background-color: #0f4f4a;
 
-  height: 60px; /* reduce this */
+  height: 120px; /* reduce this */
 }
 
 .site-header img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: 0 auto;
 }
 
 .site-header nav {
