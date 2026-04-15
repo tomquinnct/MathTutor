@@ -6,7 +6,8 @@
   text-align: center;
   padding: 70px 20px;
   background-image: url("images/Mathematics tutor promotion with call-to-action.png");
-  background-size: cover;
+  background-size: contain;
+  background-color: #0f4f4a;
   background-position: center;
   background-repeat: no-repeat;
 }
