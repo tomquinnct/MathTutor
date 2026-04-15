@@ -17,8 +17,9 @@ section {
 .hero {
   text-align: center;
   padding: 70px 20px;
-/*  background: #f7f7f7; */
-  background: red;
+/*  background: #f7f7f7;
+  background: red; */
+  background-image: url("images/Mathematics tutor promotion with call-to-action.png");
 }
 
 .hero h1 {
