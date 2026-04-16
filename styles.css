@@ -17,12 +17,12 @@
 .site-header {
 /*  background-color: #0f4f4a;  */
   background-color: #0f4f4a;
-  height: 120px; /* reduce this */
+    height: auto;   /* important */
 }
 
 .site-header img {
   width: 90%;
-  height: 220px;        /* adjust this */
+  height: 90px;        /* adjust this */
   object-fit: cover;    /* keeps it looking like a banner */
   display: block;
 
