@@ -18,7 +18,7 @@
 
 .site-header {
    background-color: #0f4f4a;   
-   background-color:  hsl(174, 68%, 18%) 
+   background-color:  hsl(174, 68%, 9%) 
 /****************************************/
 /* 174 = hue (the color → teal/green)
 /* 68% = saturation (how vivid)
@@ -57,9 +57,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   line-height: 1.6;
-/*  color: #222;       */
-
-  background-color: hsl(0, 100%, 50%);
+/* background-color: hsl(0, 100%, 50%);    */
    color:  #0f4f4a; ;
 }
 
