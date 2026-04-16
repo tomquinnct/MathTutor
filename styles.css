@@ -23,7 +23,8 @@
 
 .site-header img {
   width: 90%;
-  height: 90px;        /* adjust this */
+  height: 150px;        /* adjust this */
+  justify-content: center;
   object-fit: cover;    /* keeps it looking like a banner */
   display: block;
 
@@ -46,9 +47,9 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   line-height: 1.6;
-/*  color: #222;    color: #0f4f4a;  */
+/*  color: #222;    color: red;   */
+   color: #0f4f4a; 
    
-    color: red; 
 }
 
 /* Center page content feel */
@@ -86,6 +87,7 @@ nav {
 nav a {
   margin: 0 12px;
   text-decoration: none;
+  font-size: 16px;
   color: #0f4f4a;
   font-weight: 500;
 }
