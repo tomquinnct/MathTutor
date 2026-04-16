@@ -21,7 +21,7 @@
 
 .site-header img {
   width: 90%;
-  height: 120px;        /* adjust this */
+  height: 220px;        /* adjust this */
   object-fit: cover;    /* keeps it looking like a banner */
   display: block;
 
