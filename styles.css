@@ -23,8 +23,8 @@
 }
 
 .site-header img {
-  width: 90%;
-  height: 150px;        /* adjust this */
+  width: 100%;
+  height: 200px;        /* adjust this */
   justify-content: center;
  /*  object-fit: cover;    /* keeps it looking like a banner */
   object-fit: contain; 
