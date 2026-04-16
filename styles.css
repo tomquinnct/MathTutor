@@ -15,23 +15,20 @@
 */
 
 .site-header {
-  background-image: url("images/Mathematics tutor promotion with call-to-action.png");
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
   background-color: #0f4f4a;
-
   height: 120px; /* reduce this */
 }
 
 .site-header img {
-  max-width: 100%;
-  height: auto;
+  width: 90%;
+  height: 120px;        /* adjust this */
+  object-fit: cover;    /* keeps it looking like a banner */
   display: block;
+
 }
 
 .site-header nav {
-  padding: 10px 0;
+  padding: 12px 0 8px 0;
 }
 
 .site-header a {
