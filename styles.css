@@ -1,18 +1,19 @@
  /* =========================
    GLOBAL STYLES
 ========================= */
-/*
+  
 .header {
   text-align: center;
   padding: 70px 20px;
-  background-image: url("images/Mathematics tutor promotion with call-to-action.png");
+/*  background-image: url("images/Mathematics tutor promotion with call-to-action.png");
+  */
   background-size: contain;
   background-color: #0f4f4a;
   background-position: center;
   background-repeat: no-repeat;
-  height: 120px; /* reduce this */
+  height: auto   /*  120px; reduce this */
 }
-*/
+
 
 .site-header {
 /*  background-color: #0f4f4a;  */
@@ -45,9 +46,9 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   line-height: 1.6;
-/*  color: #222;
-    color: red;  */
+/*  color: #222; */
     color: #0f4f4a;
+    color: red; 
 }
 
 /* Center page content feel */
