@@ -41,10 +41,12 @@
 .site-header nav {
   font-size: 16px;
   padding: 12px 0 8px 0;
+  background-color: #0f4f4a;  
 }
 
 .site-header a {
  /*  color: #0f4f4a; */
+ 
   background-color:  hsl(174, 68%, 18%)  
   color: white;  
   margin: 0 10px;
@@ -58,8 +60,7 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
 /* background-color: hsl(0, 100%, 50%);    */
- background-color: #042314;
-   color:  #042314;
+ color:  #0f4f4a;
  /* color:  #0f4f4a;  */ 
 }
 
