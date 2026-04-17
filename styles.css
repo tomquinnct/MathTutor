@@ -140,7 +140,7 @@ h1, h2, h3 {
   margin: 30px auto;
   padding: 20px;
   background: #f9fdfc;
-  border: 1px solid #dcebea;
+  border: 10px solid #0f4f4a;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
