@@ -77,10 +77,13 @@
 </section>
 
   <div class="paycontainer">
-    <!-- FOR TEST SANDBOX action="https://www.sandbox.paypal.com/cgi-bin/webscr" -->
+    <!-- FOR TEST SANDBOX -->
+<!--  <form id="paypalForm" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post"> -->
+      <!-- FOR PRODUCTION -->
     <form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    
       <input type="hidden" name="cmd" value="_xclick" />
-      <input type="hidden" name="business" value="mathtutor.tomquinn@gmail.com" />
+      <input type="hidden" name="business" value="TomQuinnMathTutor@gmail.com" />
       <input type="hidden" name="item_name" id="item_name_hidden" value="1 Half Hour TEST Session" />
       <input type="hidden" name="item_number" value="TUTOR001" />
       <input type="hidden" name="amount" id="paypalAmount" value="75.00" />
@@ -103,11 +106,11 @@
 
       <label class="item_select" for="item_select">Please Choose a tutoring package:</label>
       <select class="item_name" id="item_select">
-         <!-- 
+         <!--     -->
         <option value="1 Half Hour TEST Session" data-price="1.00" data-sessions="1">
           1 Half Hour TEST Session — $1.00
         </option>
-          -->
+        
         <option value="2 Half Hour Sessions" data-price="75.00" data-sessions="2">
           2 Half Hour Sessions — $75.00
         </option>
@@ -128,6 +131,7 @@
 
       <label class="payBtn_Q" for="payBtn">Submit:</label>
       <button class="payBtn" type="submit" id="payBtn">Pay $1.00</button>
+      
     </form>
   </div>
 

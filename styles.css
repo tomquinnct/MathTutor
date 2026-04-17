@@ -40,13 +40,13 @@
 
 .site-header nav {
   font-size: 16px;
-  padding: 12px 0 8px 0;c  background-color: #0f4f4a;  
+  padding: 12px 0 8px 0;  background-color: #0f4f4a;  
 }
 
 .site-header a {
  /*  color: #0f4f4a; */
  
-  background-color:  hsl(174, 68%, 18%)  
+  background-color:  hsl(174, 68%, 18%);
   color: white;  
   margin: 0 10px;
   text-decoration: none;
@@ -129,6 +129,80 @@ nav a:hover {
 
 h1, h2, h3 {
   margin: 10px 0;
+}
+
+/* =========================
+   PAYMENT FORM STYLING
+========================= */
+
+.paycontainer {
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f9fdfc;
+  border: 1px solid #dcebea;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Labels */
+.paycontainer label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #0f4f4a;
+}
+
+/* Dropdown */
+.item_name {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b7d6d3;
+  border-radius: 6px;
+  font-size: 16px;
+  background: white;
+}
+
+/* Amount box */
+.pay_text_box {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #b7d6d3;
+  border-radius: 6px;
+  background: #eef8f7;
+  font-size: 16px;
+  color: #0f4f4a;
+}
+
+/* Pay button */
+.payBtn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  background: #0f4f4a;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.payBtn:hover {
+  background: #136a63;
+}
+
+.payBtn:disabled {
+  background: #7aa9a4;
+  cursor: not-allowed;
+}
+
+.item_name:focus,
+.pay_text_box:focus {
+  outline: none;
+  border-color: #0f4f4a;
+  box-shadow: 0 0 0 2px rgba(15,79,74,0.2);
 }
 
 /* =========================
