@@ -40,8 +40,7 @@
 
 .site-header nav {
   font-size: 16px;
-  padding: 12px 0 8px 0;
-  background-color: #0f4f4a;  
+  padding: 12px 0 8px 0;c  background-color: #0f4f4a;  
 }
 
 .site-header a {
@@ -136,8 +135,8 @@ h1, h2, h3 {
    FOOTER CONTAINER
 ========================= */
 footer {
-/*   background: #0f4f4a; matches your green theme */
-  background-color: #042314;   /* a better fit */
+/* background: #0f4f4ac  matches your green theme */
+  background-color: #0f4f4ac; 
   color: white;
   text-align: center;
   padding: 25px 15px;
