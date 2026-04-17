@@ -58,8 +58,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   line-height: 1.6;
-/* background-color: hsl(0, 100%, 50%);    */
- color:  #0f4f4a;
+  color:  #0f4f4a;
  /* color:  #0f4f4a;  */ 
 }
 
@@ -72,6 +71,7 @@ section {
 .hero {
   text-align: center;
   padding-top: 0px; 
+  padding-bottom: 20px; 
  /*  padding-top: 20px;  */
 /*  background-image: url("images/Mathematics tutor promotion with call-to-action.png"); */
   background-size: cover;
