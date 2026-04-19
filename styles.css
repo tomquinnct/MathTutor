@@ -20,14 +20,7 @@
 .site-header {
 /*   background-color: #0f4f4a;  */ 
    background-color: #042314;
-/****************************************/
-/* 174 = hue (the color → teal/green)
-/* 68% = saturation (how vivid)
-/* 18% = lightness (how dark)    
-/* 👉 Lower lightness = darker
-/* 👉 Higher lightness = lighter
-/****************************************/
-    height: auto;   /* important */
+   height: auto;   /* important */
 }
 
 .site-header img {
@@ -138,8 +131,8 @@ h1, h2, h3 {
 ========================= */
 
 .paycontainer {
-  max-width: 500px;
-  margin: 30px auto;
+  max-width: 400px;
+  margin: 10px auto;
   padding: 20px;
   background: #f9fdfc;
   border: 10px solid #0f4f4a;
@@ -211,19 +204,20 @@ h1, h2, h3 {
 }
 
 
- .notice-neutral {
-  max-width: 500px;
+.notice-neutral {
+  max-width: 280px;
   text-align: center;
   font-weight: bold;
-  margin: 30px auto;
-  padding: 20px;
-  border: 10px solid #0f4f4a;
+  margin: 20px auto;
+  padding: 12px 14px;
+  border: 6px solid #0f4f4a;
   border-radius: 10px;
   background: #eef8f7;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  font-size: 16px;
+  font-size: 15px;
   color: #0f4f4a;
 }
+
 /* =========================
    FOOTER CONTAINER
 ========================= */
