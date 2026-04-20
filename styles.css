@@ -205,12 +205,12 @@ h1, h2, h3 {
 
 
 .notice-neutral {
-  max-width: 280px;
+  max-width: 260px;   /* smaller width */
   text-align: center;
   font-weight: bold;
   margin: 20px auto;
-  padding: 12px 14px;
-  border: 6px solid #0f4f4a;
+  padding: 10px 12px; /* reduced padding */
+  border: 6px solid #0f4f4a; /* thinner border */
   border-radius: 10px;
   background: #eef8f7;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
@@ -288,7 +288,7 @@ footer p {
 
 .phone-link,
 .email-link {
-  color: white;
+   color:  #0f4f4a;
   text-decoration: none;
 }
 
