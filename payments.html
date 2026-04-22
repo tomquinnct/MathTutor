@@ -349,6 +349,28 @@
       }
     }
   });
+  
+  async function fetchSessions() {
+  try {
+    const res = await fetch(`https://tutoring-backend-6fqf.onrender.com/sessions/${USER_ID}`);
+
+    if (!res.ok) throw new Error('Server error');
+
+    const data = await res.json();
+
+    updateBookingVisibilityFromServer(data.sessions);
+
+  } catch (err) {
+    console.error('Failed to fetch sessions:', err);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  updatePayment();
+  fetchSessions(); // 👈 THIS runs your backend call
+});
+
+
 </script>
 </body>
 </html>
