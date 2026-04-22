@@ -93,10 +93,10 @@
       <input type="hidden" name="bn" value="PP-BuyNowBF" />
 
       <input
-        type="hidden"
-        name="return"
-        id="returnUrl"
-        value="https://mathtutortomquinn-glitch.github.io/MathTutor/payments.html"
+         type="hidden"
+         name="return"
+         id="returnUrl"
+         value="https://quinnmathtutor.com/payments.html?success=true"
       />
 
       <input
@@ -365,9 +365,37 @@
   }
 }
 
+async function verifyPayment() {
+  const params = new URLSearchParams(window.location.search);
+  const tx = params.get('tx');
+  const success = params.get('success');
+
+  if (!tx || success !== 'true') return;
+
+  try {
+    const res = await fetch('https://tutoring-backend-6fqf.onrender.com/verify-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tx, userId: USER_ID })
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+      updateBookingVisibilityFromServer(data.sessions);
+      alert(`Payment verified! You now have ${data.sessions} sessions.`);
+    }
+
+  } catch (err) {
+    console.error('Verification failed:', err);
+  }
+}
+
+
 window.addEventListener('DOMContentLoaded', function () {
   updatePayment();
   fetchSessions(); // 👈 THIS runs your backend call
+  verifyPayment(); //  
 });
 
 
