@@ -1,4 +1,5 @@
 .DS_Store
 *.zip
 styles copy.css
-
+node_modules/
+.env
