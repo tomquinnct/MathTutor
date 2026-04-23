@@ -183,6 +183,9 @@
 </footer>
 
 <script>
+  const USER_ID = localStorage.getItem('userId') || crypto.randomUUID();
+  localStorage.setItem('userId', USER_ID);
+
   const form = document.getElementById('paypalForm');
   const select = document.getElementById('item_select');
   const paypalAmount = document.getElementById('paypalAmount');
@@ -229,71 +232,8 @@
     returnUrl.value = successUrl.toString();
   }
 
-  function getSessionsRemaining() {
-    return parseInt(localStorage.getItem('sessionsRemaining') || '0', 10);
-  }
-
-  function setSessionsRemaining(count) {
-    localStorage.setItem('sessionsRemaining', String(count));
-  }
-
   function clearSessionsRemaining() {
     localStorage.removeItem('sessionsRemaining');
-  }
-
-  function applySuccessfulPaymentFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    const paid = params.get('paid');
-    const packageName = params.get('package') || '';
-    const amount = params.get('amount') || '';
-    const sessionsPurchased = parseInt(params.get('sessions') || '0', 10);
-
-    if (paid !== 'true' || sessionsPurchased <= 0) return;
-
-    const paymentSignature = `paid:${paid}|package:${packageName}|amount:${amount}|sessions:${sessionsPurchased}`;
-    const alreadyProcessed = sessionStorage.getItem('lastProcessedPaymentSignature');
-
-    if (alreadyProcessed === paymentSignature) return;
-
-    const currentSessions = getSessionsRemaining();
-    const newTotal = currentSessions + sessionsPurchased;
-
-    setSessionsRemaining(newTotal);
-    localStorage.setItem('lastPackageName', packageName);
-    localStorage.setItem('lastAmountPaid', amount);
-    localStorage.setItem('lastSessionsPurchased', String(sessionsPurchased));
-
-    sessionStorage.setItem('lastProcessedPaymentSignature', paymentSignature);
-  }
-
-  function updateBookingVisibility() {
-    const sessionsRemaining = getSessionsRemaining();
-
-    if (sessionsRemaining > 0) {
-      bookingSection.classList.remove('locked', 'hidden');
-      bookingNotice.classList.add('hidden');
-
-      sessionsNotice.textContent =
-        `Sessions remaining: ${sessionsRemaining}. You may continue scheduling.`;
-      sessionsNotice.classList.remove('hidden');
-    } else {
-      bookingSection.classList.add('locked', 'hidden');
-      bookingNotice.classList.remove('hidden');
-      sessionsNotice.classList.add('hidden');
-      sessionsNotice.textContent = '';
-    }
-  }
-
-  function decrementSessionCount() {
-    const current = getSessionsRemaining();
-
-    if (current > 1) {
-      setSessionsRemaining(current - 1);
-    } else {
-      clearSessionsRemaining();
-    }
-
-    updateBookingVisibility();
   }
 
   function showPaymentSuccessBanner() {
@@ -311,6 +251,22 @@
       window.history.replaceState({}, document.title, window.location.pathname);
     }
   }
+
+  function updateBookingVisibilityFromServer(sessions) {
+  if (sessions > 0) {
+    bookingSection.classList.remove('locked', 'hidden');
+    bookingNotice.classList.add('hidden');
+
+    sessionsNotice.textContent =
+      `Sessions remaining: ${sessions}. You may continue scheduling.`;
+    sessionsNotice.classList.remove('hidden');
+  } else {
+    bookingSection.classList.add('locked', 'hidden');
+    bookingNotice.classList.remove('hidden');
+    sessionsNotice.classList.add('hidden');
+    sessionsNotice.textContent = '';
+  }
+ }
 
   applySuccessfulPaymentFromUrl();
   updatePayment();
@@ -376,8 +332,12 @@ async function verifyPayment() {
     const res = await fetch('https://tutoring-backend-6fqf.onrender.com/verify-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tx, userId: USER_ID })
-    });
+      body: JSON.stringify({
+            tx,
+            userId: USER_ID,
+            packageName: document.getElementById('item_select').value
+      })  
+  });
 
     const data = await res.json();
 
