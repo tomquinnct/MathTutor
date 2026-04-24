@@ -149,7 +149,7 @@
   <section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
   
 <h2>Book a Session</h2>
-
+<h2>Booking Sessions Remaining: <span id="sessions">Loading...</span></h2>
 <div 
   class="calendly-inline-widget"
   data-url="https://calendly.com/mathtutor-tomquinn/30min"
@@ -360,6 +360,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 </script>
+
 <script>
 async function loadSessions() {
   try {
