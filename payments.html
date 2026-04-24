@@ -142,7 +142,7 @@
     Please purchase a tutoring package to unlock scheduling.
   </div>
 
-
+   <h2>Sessions Remaining: <span id="sessions">Loading...</span></h2>
 
   <div id="sessionsNotice" class="notice notice-success hidden"></div>
 
@@ -360,5 +360,22 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 </script>
+<script>
+async function loadSessions() {
+  try {
+    const response = await fetch('https://tutoring-backend-1-k361.onrender.com/sessions/testuser');
+    const data = await response.json();
+
+    console.log('Sessions:', data.sessions);
+    document.getElementById('sessions').innerText = data.sessions;
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+loadSessions();
+</script>
+
 </body>
 </html>
