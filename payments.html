@@ -74,7 +74,7 @@
     One-on-one tutoring sessions conducted live via Zoom with an
     <strong>Experienced Certified Educator.</strong>
   </h2>
-<h1 style="color:red;">NEW VERSION TEST</h1>
+<h1 style="color:red;">NEW VERSION STRIPT TEST</h1>
 </section>
 
   <div class="paycontainer">
@@ -268,9 +268,9 @@
   }
  }
 
-  applySuccessfulPaymentFromUrl();
+  
   updatePayment();
-  updateBookingVisibility();
+
   showPaymentSuccessBanner();
 
   select.addEventListener('change', updatePayment);
@@ -293,17 +293,6 @@
   window.addEventListener('message', function (e) {
     if (e.origin !== 'https://calendly.com') return;
 
-    if (e.data.event === 'calendly.event_scheduled') {
-      decrementSessionCount();
-
-      const remaining = getSessionsRemaining();
-
-      if (remaining > 0) {
-        alert(`Session booked. ${remaining} remaining.`);
-      } else {
-        alert('Session booked. All sessions used.');
-      }
-    }
   });
   
   async function fetchSessions() {
