@@ -292,6 +292,13 @@ footer p {
   text-decoration: none;
 }
 
+.phone-linkC,
+.email-linkC {
+   color: #0f4f4a;
+  text-decoration: none;
+}
+
+
 /* =========================
    RESPONSIVE (MOBILE)
 ========================= */
