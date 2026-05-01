@@ -1,0 +1,371 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutoring Payments</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .locked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .notice {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 16px 18px;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .notice-neutral {
+      background: #f4f4f4;
+      border-left: 4px solid #555;
+      color: #222;
+    }
+
+    .notice-success {
+      background: #eef8ee;
+      border-left: 4px solid #2e7d32;
+      color: #1f4d22;
+    }
+
+    .notice-warning {
+      background: #fff8e8;
+      border-left: 4px solid #b7791f;
+      color: #6b4e16;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+
+  <img src="images/Mathematics tutor promotion with call-to-action.png" alt="Math Tutor Banner">
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="why-online-tutoring-works.html">Why Online Tutoring</a>
+    <a href="sales.html">The Process</a>
+    <a href="services.html">Courses</a>
+    <a href="contact.html">Contact</a>
+    <a href="payments.html">Payments and Scheduling</a>
+    <a href="student-successs-stories.html">Success stories</a>
+    <a href="parent-faq.html">FAQ</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Secure Tutoring Payment and Scheduling</h1>
+  
+  <h2>Algebra • Geometry • Middle School Mathematics</h2>
+
+  <h2>
+    One-on-one tutoring sessions conducted live via Zoom with an
+    <strong>Experienced Certified Educator.</strong>
+  </h2>
+<h1 style="color:red;">NEW VERSION STRIPT TEST</h1>
+</section>
+
+  <div class="paycontainer">
+    <!-- FOR TEST SANDBOX -->
+<!--  <form id="paypalForm" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post"> -->
+      <!-- FOR PRODUCTION -->
+    <form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    
+      <input type="hidden" name="cmd" value="_xclick" />
+      <input type="hidden" name="business" value="TomQuinnMathTutor@gmail.com" />
+      <input type="hidden" name="item_name" id="item_name_hidden" value="1 Half Hour TEST Session" />
+      <input type="hidden" name="item_number" value="TUTOR001" />
+      <input type="hidden" name="amount" id="paypalAmount" value="75.00" />
+      <input type="hidden" name="currency_code" value="USD" />
+      <input type="hidden" name="no_note" value="1" />
+      <input type="hidden" name="bn" value="PP-BuyNowBF" />
+
+      <input
+         type="hidden"
+         name="return"
+         id="returnUrl"
+         value="https://quinnmathtutor.com/payments.html?success=true"
+      />
+
+      <input
+        type="hidden"
+        name="cancel_return"
+        value="https://mathtutortomquinn-glitch.github.io/MathTutor/payment-cancelled.html"
+      />
+
+      <label class="item_select" for="item_select">Please Choose a tutoring package:</label>
+      <select class="item_name" id="item_select">
+         <!--     -->
+        <option value="1 Half Hour TEST Session" data-price="2.00" data-sessions="2">
+          1 Half Hour TEST Session — $2.00
+        </option>
+        
+        <option value="2 Half Hour Sessions" data-price="75.00" data-sessions="2">
+          2 Half Hour Sessions — $75.00
+        </option>
+        <option value="10 Half Hour Sessions" data-price="350.00" data-sessions="10">
+          10 Half Hour Sessions — $350.00
+        </option>
+        <option value="20 Half Hour Sessions" data-price="650.00" data-sessions="20">
+          20 Half Hour Sessions — $650.00
+        </option>
+      </select>
+
+      <br>
+
+      <label class="displayAmount" for="displayAmount">Purchase Total amount:</label>
+      <input class="pay_text_box" type="text" id="displayAmount" value="$1.00" readonly />
+
+      <br>
+
+      <label class="payBtn_Q" for="payBtn">Submit:</label>
+      <button class="payBtn" type="submit" id="payBtn">Pay $1.00</button>
+      
+    </form>
+  </div>
+
+  <div id="paymentSuccessBanner" class="notice notice-success hidden"></div>
+
+  <div id="bookingNotice" class="notice notice-neutral">
+    Please purchase a tutoring package to unlock scheduling.
+  </div>
+
+   <h2>Sessions Remaining: <span id="sessions">Loading...</span></h2>
+
+  <div id="sessionsNotice" class="notice notice-success hidden"></div>
+
+  <section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
+  
+<h2>Book a Session</h2>
+<h2>Booking Sessions Remaining: <span id="sessions">Loading...</span></h2>
+<div 
+  class="calendly-inline-widget"
+  data-url="https://calendly.com/mathtutor-tomquinn/30min"
+  style="min-width:320px; height:750px;">
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<footer>
+ 
+   <p>
+      <!-- Online Math Tutoring via Zoom | -->
+      Phone: <a href="tel:12039627500" class="phone-link">203 962 7500</a> | 
+      Email: <a href="mailto:TomQuinnMathTutor@gmail.com" class="email-link">
+      TomQuinnMathTutor@gmail.com </a>
+    </p>
+    
+ 
+<div class="social-bar">
+  <!-- LinkedIn -->
+  <a class="social-icon" href="https://www.linkedin.com/in/mathtutor-tomquinn" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+  </a>
+
+  <!-- Facebook -->
+  <a class="social-icon" href="https://www.facebook.com/tom.quinn.1029" target="_blank">
+    <i class="fab fa-facebook facebook-icon"></i>
+  </a>
+</div>
+
+</footer>
+
+<script>
+  const USER_ID = localStorage.getItem('userId') || crypto.randomUUID();
+  localStorage.setItem('userId', USER_ID);
+
+  const form = document.getElementById('paypalForm');
+  const select = document.getElementById('item_select');
+  const paypalAmount = document.getElementById('paypalAmount');
+  const displayAmount = document.getElementById('displayAmount');
+  const payBtn = document.getElementById('payBtn');
+  const itemNameHidden = document.getElementById('item_name_hidden');
+  const returnUrl = document.getElementById('returnUrl');
+
+  const bookingSection = document.getElementById('bookingSection');
+  const bookingNotice = document.getElementById('bookingNotice');
+  const sessionsNotice = document.getElementById('sessionsNotice');
+  const successBanner = document.getElementById('paymentSuccessBanner');
+
+  const SITE_BASE = 'https://quinnmathtutor.com';
+  const PAYMENTS_PAGE = `${SITE_BASE}/payments.html`;
+
+  function getSelectedOption() {
+    return select.options[select.selectedIndex];
+  }
+
+  function updatePayment() {
+    const selectedOption = getSelectedOption();
+    if (!selectedOption) return;
+
+    const price = selectedOption.getAttribute('data-price');
+    const name = selectedOption.value;
+    const sessions = selectedOption.getAttribute('data-sessions');
+
+    paypalAmount.value = price;
+    itemNameHidden.value = name;
+    const formattedPrice = Number(price) % 1 === 0 
+    ? `$${Number(price)}`
+    : `$${Number(price).toFixed(2)}`;
+
+    displayAmount.value = formattedPrice;
+    payBtn.textContent = `Pay ${formattedPrice}`;
+
+    const successUrl = new URL(PAYMENTS_PAGE);
+    successUrl.searchParams.set('paid', 'true');
+    successUrl.searchParams.set('package', name);
+    successUrl.searchParams.set('sessions', sessions);
+    successUrl.searchParams.set('amount', price);
+
+    returnUrl.value = successUrl.toString();
+  }
+
+  function clearSessionsRemaining() {
+    localStorage.removeItem('sessionsRemaining');
+  }
+
+  function showPaymentSuccessBanner() {
+    const params = new URLSearchParams(window.location.search);
+    const fromPayment = params.get('paid');
+    const packageName = params.get('package') || '';
+    const sessionsPurchased = parseInt(params.get('sessions') || '0', 10);
+    const totalSessions = getSessionsRemaining();
+
+    if (fromPayment === 'true') {
+      successBanner.textContent =
+        `Payment successful${packageName ? ` for ${packageName}` : ''}. Added ${sessionsPurchased} session${sessionsPurchased === 1 ? '' : 's'}. You now have ${totalSessions} session${totalSessions === 1 ? '' : 's'} available to schedule.`;
+
+      successBanner.classList.remove('hidden');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }
+
+  function updateBookingVisibilityFromServer(sessions) {
+  if (sessions > 0) {
+    bookingSection.classList.remove('locked', 'hidden');
+    bookingNotice.classList.add('hidden');
+
+    sessionsNotice.textContent =
+      `Sessions remaining: ${sessions}. You may continue scheduling.`;
+    sessionsNotice.classList.remove('hidden');
+  } else {
+    bookingSection.classList.add('locked', 'hidden');
+    bookingNotice.classList.remove('hidden');
+    sessionsNotice.classList.add('hidden');
+    sessionsNotice.textContent = '';
+  }
+ }
+
+  
+  updatePayment();
+
+  showPaymentSuccessBanner();
+
+  select.addEventListener('change', updatePayment);
+
+  form.addEventListener('submit', function () {
+    updatePayment();
+    payBtn.textContent = 'Processing...';
+    payBtn.disabled = true;
+  });
+
+  window.addEventListener('pageshow', function (event) {
+    if (event.persisted) {
+      payBtn.disabled = false;
+      updatePayment();
+      updateBookingVisibility();
+      showPaymentSuccessBanner();
+    }
+  });
+
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://calendly.com') return;
+
+  });
+  
+  async function fetchSessions() {
+  try {
+    const res = await fetch(`https://tutoring-backend-6fqf.onrender.com/sessions/${USER_ID}`);
+
+    if (!res.ok) throw new Error('Server error');
+
+    const data = await res.json();
+
+    updateBookingVisibilityFromServer(data.sessions);
+
+  } catch (err) {
+    console.error('Failed to fetch sessions:', err);
+  }
+}
+
+async function verifyPayment() {
+  const params = new URLSearchParams(window.location.search);
+  const tx = params.get('tx');
+  const success = params.get('success');
+
+  if (!tx || success !== 'true') return;
+
+  try {
+    const res = await fetch('https://tutoring-backend-6fqf.onrender.com/verify-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+            tx,
+            userId: USER_ID,
+            packageName: document.getElementById('item_select').value
+      })  
+  });
+
+    const data = await res.json();
+
+    if (data.success) {
+      updateBookingVisibilityFromServer(data.sessions);
+      alert(`Payment verified! You now have ${data.sessions} sessions.`);
+    }
+
+  } catch (err) {
+    console.error('Verification failed:', err);
+  }
+}
+
+
+window.addEventListener('DOMContentLoaded', function () {
+  updatePayment();
+  fetchSessions(); // 👈 THIS runs your backend call
+  verifyPayment(); //  
+});
+
+
+</script>
+
+<script>
+async function loadSessions() {
+  try {
+    const response = await fetch('https://tutoring-backend-1-k361.onrender.com/sessions/testuser');
+    const data = await response.json();
+
+    console.log('Sessions:', data.sessions);
+    document.getElementById('sessions').innerText = data.sessions;
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+loadSessions();
+</script>
+
+</body>
+</html>
