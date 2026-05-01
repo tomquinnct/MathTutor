@@ -75,67 +75,84 @@
     <strong>Experienced Certified Educator.</strong>
   </h2>
   
-<!--   <h1 style="color:red;">NEW VERSION STRIPT TEST</h1>  -->
+<!--   <h1 style="color:red;">NEW VERSION BACKEND TEST</h1>  -->
 
 </section>
 
   <div class="paycontainer">
-    <!-- FOR TEST SANDBOX -->
-<!--  <form id="paypalForm" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post"> -->
-      <!-- FOR PRODUCTION -->
-    <form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+<select id="packageSelect">
+  <option value="test">2 Half Hour TEST Session — $2.00</option>
+  <option value="two">2 Half Hour Sessions — $75.00</option>
+  <option value="ten">10 Half Hour Sessions — $350.00</option>
+  <option value="twenty">20 Half Hour Sessions — $650.00</option>
+</select>
+
+<div id="paypal-button-container"></div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=YOUR_LIVE_CLIENT_ID&currency=USD"></script>
+<script>
+const API_BASE = "https://tutoring-backend-6fqf.onrender.com";
+
+async function bootstrapSession() {
+  await fetch(`${API_BASE}/api/session`, {
+    credentials: "include"
+  });
+}
+
+async function loadSessions() {
+  const res = await fetch(`${API_BASE}/sessions`, {
+    credentials: "include"
+  });
+
+  const data = await res.json();
+
+  document.getElementById("sessions").textContent = data.sessions;
+
+  updateBookingVisibilityFromServer(data.sessions);
+}
+
+paypal.Buttons({
+  createOrder: async function () {
+    const packageId = document.getElementById("packageSelect").value;
+
+    const res = await fetch(`${API_BASE}/api/paypal/create-order`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ packageId })
+    });
+
+    const data = await res.json();
+    return data.orderId;
+  },
+
+  onApprove: async function (data) {
+    const res = await fetch(`${API_BASE}/api/paypal/capture-order`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ orderId: data.orderID })
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      await loadSessions();
+      alert("Payment complete. Your sessions have been added.");
+    } else {
+      alert("Payment could not be confirmed.");
+    }
+  }
+}).render("#paypal-button-container");
+
+document.addEventListener("DOMContentLoaded", async function () {
+  await bootstrapSession();
+  await loadSessions();
+});
+</script>
+
     
-      <input type="hidden" name="cmd" value="_xclick" />
-      <input type="hidden" name="business" value="TomQuinnMathTutor@gmail.com" />
-      <input type="hidden" name="item_name" id="item_name_hidden" value="1 Half Hour TEST Session" />
-      <input type="hidden" name="item_number" value="TUTOR001" />
-      <input type="hidden" name="amount" id="paypalAmount" value="75.00" />
-      <input type="hidden" name="currency_code" value="USD" />
-      <input type="hidden" name="no_note" value="1" />
-      <input type="hidden" name="bn" value="PP-BuyNowBF" />
-
-      <input
-         type="hidden"
-         name="return"
-         id="returnUrl"
-         value="https://quinnmathtutor.com/payments.html?success=true"
-      />
-
-      <input
-        type="hidden"
-        name="cancel_return"
-        value="https://mathtutortomquinn-glitch.github.io/MathTutor/payment-cancelled.html"
-      />
-
-      <label class="item_select" for="item_select">Please Choose a tutoring package:</label>
-      <select class="item_name" id="item_select">
-         <!--     -->
-        <option value="1 Half Hour TEST Session" data-price="2.00" data-sessions="2">
-          1 Half Hour TEST Session — $2.00
-        </option>
-        
-        <option value="2 Half Hour Sessions" data-price="75.00" data-sessions="2">
-          2 Half Hour Sessions — $75.00
-        </option>
-        <option value="10 Half Hour Sessions" data-price="350.00" data-sessions="10">
-          10 Half Hour Sessions — $350.00
-        </option>
-        <option value="20 Half Hour Sessions" data-price="650.00" data-sessions="20">
-          20 Half Hour Sessions — $650.00
-        </option>
-      </select>
-
-      <br>
-
-      <label class="displayAmount" for="displayAmount">Purchase Total amount:</label>
-      <input class="pay_text_box" type="text" id="displayAmount" value="$1.00" readonly />
-
-      <br>
-
-      <label class="payBtn_Q" for="payBtn">Submit:</label>
-      <button class="payBtn" type="submit" id="payBtn">Pay $1.00</button>
-      
-    </form>
   </div>
 
   <div id="paymentSuccessBanner" class="notice notice-success hidden"></div>
@@ -188,8 +205,6 @@
   const USER_ID = localStorage.getItem('userId') || crypto.randomUUID();
   localStorage.setItem('userId', USER_ID);
 
-  const form = document.getElementById('paypalForm');
-  const select = document.getElementById('item_select');
   const paypalAmount = document.getElementById('paypalAmount');
   const displayAmount = document.getElementById('displayAmount');
   const payBtn = document.getElementById('payBtn');
@@ -208,31 +223,6 @@
     return select.options[select.selectedIndex];
   }
 
-  function updatePayment() {
-    const selectedOption = getSelectedOption();
-    if (!selectedOption) return;
-
-    const price = selectedOption.getAttribute('data-price');
-    const name = selectedOption.value;
-    const sessions = selectedOption.getAttribute('data-sessions');
-
-    paypalAmount.value = price;
-    itemNameHidden.value = name;
-    const formattedPrice = Number(price) % 1 === 0 
-    ? `$${Number(price)}`
-    : `$${Number(price).toFixed(2)}`;
-
-    displayAmount.value = formattedPrice;
-    payBtn.textContent = `Pay ${formattedPrice}`;
-
-    const successUrl = new URL(PAYMENTS_PAGE);
-    successUrl.searchParams.set('paid', 'true');
-    successUrl.searchParams.set('package', name);
-    successUrl.searchParams.set('sessions', sessions);
-    successUrl.searchParams.set('amount', price);
-
-    returnUrl.value = successUrl.toString();
-  }
 
   function clearSessionsRemaining() {
     localStorage.removeItem('sessionsRemaining');
@@ -270,9 +260,6 @@
   }
  }
 
-  
-  updatePayment();
-
   showPaymentSuccessBanner();
 
   select.addEventListener('change', updatePayment);
@@ -297,6 +284,8 @@
 
   });
   
+    <!-- Old Front End Process -->
+  <!--
   async function fetchSessions() {
   try {
     const res = await fetch(`https://tutoring-backend-6fqf.onrender.com/sessions/${USER_ID}`);
@@ -311,7 +300,7 @@
     console.error('Failed to fetch sessions:', err);
   }
 }
-
+  
 async function verifyPayment() {
   const params = new URLSearchParams(window.location.search);
   const tx = params.get('tx');
@@ -340,13 +329,14 @@ async function verifyPayment() {
   } catch (err) {
     console.error('Verification failed:', err);
   }
-}
-
-
+} -->
+  <!-- End of Old Front End Process -->
+  
+  
 window.addEventListener('DOMContentLoaded', function () {
   updatePayment();
   fetchSessions(); // 👈 THIS runs your backend call
-  verifyPayment(); //  
+ <!-- verifyPayment(); -->  
 });
 
 
