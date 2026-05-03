@@ -132,6 +132,7 @@ h1, h2, h3 {
 
 .paycontainer {
   max-width: 400px;
+  height: 500px; /* adjust as needed */
   margin: 20px auto;
   padding: 20px;
   background: #f9fdfc;
