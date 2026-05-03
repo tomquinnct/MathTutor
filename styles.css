@@ -132,7 +132,7 @@ h1, h2, h3 {
 
 .paycontainer {
   max-width: 400px;
-  margin: 10px auto;
+  margin: 20px auto;
   padding: 20px;
   background: #f9fdfc;
   border: 10px solid #0f4f4a;
@@ -144,7 +144,7 @@ h1, h2, h3 {
 .paycontainer label {
   display: block;
   margin-top: 15px;
-  margin-bottom: 6px;
+  margin-bottom: 15px;
   font-weight: 600;
   color: #0f4f4a;
 }
