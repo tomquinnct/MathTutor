@@ -129,8 +129,8 @@ h1, h2, h3 {
 /* =========================
    PAYMENT FORM STYLING
 ========================= */
-/*
-.paycontainer {
+
+/*  .paycontainer {
   max-width: 400px;
   height: 400px; /* adjust as needed */
   margin: 20px auto;
@@ -139,8 +139,7 @@ h1, h2, h3 {
   border: 10px solid #0f4f4a;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-*/
+} */
 
 .paycontainer {
   max-width: 420px;
@@ -175,7 +174,8 @@ h1, h2, h3 {
 */
 
 #packageSelect {
-  width: 100%;
+  width: 90%;
+  max-width: 350px;
   height: 55px;
   font-size: 16px;
   padding: 10px;
@@ -187,7 +187,11 @@ h1, h2, h3 {
 }
 
 #paypal-button-container {
-  margin-top: 15px;
+  width: 90%;
+  max-width: 350px;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
 
 
