@@ -132,7 +132,7 @@ h1, h2, h3 {
 
 .paycontainer {
   max-width: 400px;
-  height: 100px; /* adjust as needed */
+  height: 400px; /* adjust as needed */
   margin: 20px auto;
   padding: 20px;
   background: #f9fdfc;
@@ -149,6 +149,17 @@ h1, h2, h3 {
   font-weight: 600;
   color: #0f4f4a;
 }
+
+#packageSelect {
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  padding: 10px;
+  border: 2px solid #0f4f4a;
+  border-radius: 8px;
+  background: #eef8f7;
+}
+
 
 /* Dropdown */
 .item_name {
