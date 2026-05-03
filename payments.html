@@ -225,6 +225,10 @@ paypal.Buttons({
     } else {
       alert("Payment could not be confirmed.");
     }
+  },
+    onError: function (err) {
+    console.error("PayPal error:", err);
+    alert("PayPal checkout failed. Check the browser console.");
   }
 }).render("#paypal-button-container");
 
