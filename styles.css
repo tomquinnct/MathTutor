@@ -129,7 +129,7 @@ h1, h2, h3 {
 /* =========================
    PAYMENT FORM STYLING
 ========================= */
-
+/*
 .paycontainer {
   max-width: 400px;
   height: 400px; /* adjust as needed */
@@ -140,6 +140,19 @@ h1, h2, h3 {
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
+*/
+
+.paycontainer {
+  max-width: 420px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border: 2px solid #0f4f4a;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
 
 /* Labels */
 .paycontainer label {
@@ -149,7 +162,7 @@ h1, h2, h3 {
   font-weight: 600;
   color: #0f4f4a;
 }
-
+/*
 #packageSelect {
   width: 100%;
   height: 50px;
@@ -158,6 +171,23 @@ h1, h2, h3 {
   border: 2px solid #0f4f4a;
   border-radius: 8px;
   background: #eef8f7;
+}
+*/
+
+#packageSelect {
+  width: 100%;
+  height: 55px;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #0f4f4a;
+  border-radius: 8px;
+  background-color: #f9fdfc;
+  cursor: pointer;
+}
+
+#paypal-button-container {
+  margin-top: 15px;
 }
 
 
