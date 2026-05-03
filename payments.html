@@ -79,8 +79,12 @@
 
 </section>
 
+ <div class="center-wrapper">
+
   <div class="paycontainer">
-<h2 style="margin-bottom: 20px;">Choose Your Tutoring Package</h2>
+    
+    <h2 style="margin-bottom: 20px;">Choose Your Tutoring Package</h2>
+  
     <select id="packageSelect">
       <option value="test">2 Half Hour TEST Session — $2.00</option>
       <option value="two">2 Half Hour Sessions — $75.00</option>
@@ -88,11 +92,11 @@
       <option value="twenty">20 Half Hour Sessions — $650.00</option>
     </select>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AUMwMtXucbF0hp5UbnyclgPWeBUmzBpMLai9zxiwwJTkPSDkRgonjquFzHEfHUN6TH3O1bDvapgKXp7B&currency=USD"></script>
-
     <div id="paypal-button-container"></div>
     
   </div>
+
+</div>
 
   <div id="paymentSuccessBanner" class="notice notice-success hidden"></div>
 
@@ -141,6 +145,8 @@
 </div>
 
 </footer>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AUMwMtXucbF0hp5UbnyclgPWeBUmzBpMLai9zxiwwJTkPSDkRgonjquFzHEfHUN6TH3O1bDvapgKXp7B&currency=USD"></script>
 
 <script>
 const API_BASE = "https://tutoring-backend-6fqf.onrender.com";
