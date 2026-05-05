@@ -167,15 +167,27 @@ async function loadSessions() {
       credentials: "include"
     });
 
+    // Check if the response is successful (status 200-299)
+    if (!res.ok) {
+      throw new Error(`Server returned status ${res.status}: ${res.statusText}`);
+    }
+
+    // Check if the content type is actually JSON
+    const contentType = res.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+      const text = await res.text(); // Get the HTML text to help debug
+      console.error("Expected JSON but received:", text.substring(0, 100));
+      throw new TypeError("Response was not JSON");
+    }
+
     const data = await res.json();
-
     document.getElementById("sessions").textContent = data.sessions;
-
     updateBookingVisibilityFromServer(data.sessions);
   } catch (err) {
     console.error("Failed to load sessions:", err);
   }
 }
+
 
 function updateBookingVisibilityFromServer(sessions) {
   if (sessions > 0) {
@@ -195,19 +207,35 @@ function updateBookingVisibilityFromServer(sessions) {
 }
 
 paypal.Buttons({
-  createOrder: async function () {
-    const packageId = document.getElementById("packageSelect").value;
+createOrder: async function () {
+  const packageId = document.getElementById("packageSelect").value;
 
-    const res = await fetch(`${API_BASE}/api/paypal/create-order`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({ packageId })
-    });
+  const res = await fetch(`${API_BASE}/api/paypal/create-order`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ packageId })
+  });
 
-    const data = await res.json();
-    return data.orderId;
-  },
+  const text = await res.text();
+
+  console.log("Create order HTTP status:", res.status);
+  console.log("Create order raw response:", text);
+
+  let data;
+
+  try {
+    data = JSON.parse(text);
+  } catch (err) {
+    throw new Error("Backend did not return JSON. It returned: " + text.slice(0, 200));
+  }
+
+  if (!res.ok || !data.orderId) {
+    throw new Error(data.error || "No PayPal orderId returned");
+  }
+
+  return data.orderId;
+},
 
   onApprove: async function (data) {
     const res = await fetch(`${API_BASE}/api/paypal/capture-order`, {
