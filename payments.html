@@ -2,43 +2,160 @@
 PAYMENTS.HTML (UPDATED)
 FIXED: session bootstrap + cleaner PayPal flow
 ======================= -->
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tutoring Payments</title>
-
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .locked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
 
+    .hidden {
+      display: none;
+    }
+
+    .notice {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 16px 18px;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .notice-neutral {
+      background: #f4f4f4;
+      border-left: 4px solid #555;
+      color: #222;
+    }
+
+    .notice-success {
+      background: #eef8ee;
+      border-left: 4px solid #2e7d32;
+      color: #1f4d22;
+    }
+
+    .notice-warning {
+      background: #fff8e8;
+      border-left: 4px solid #b7791f;
+      color: #6b4e16;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- =======================
-HEADER (unchanged)
-======================= -->
 <header class="site-header">
+
   <img src="images/Mathematics tutor promotion with call-to-action.png" alt="Math Tutor Banner">
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="why-online-tutoring-works.html">Why Online Tutoring</a>
+    <a href="sales.html">The Process</a>
+    <a href="services.html">Courses</a>
+    <a href="contact.html">Contact</a>
+    <a href="payments.html">Payments and Scheduling</a>
+    <a href="student-successs-stories.html">Success stories</a>
+    <a href="parent-faq.html">FAQ</a>
+  </nav>
 </header>
+
+<section class="hero">
+  <h1>Secure Tutoring Payment and Scheduling</h1>
+  
+  <h2>Algebra • Geometry • Middle School Mathematics</h2>
+
+  <h2>
+    One-on-one tutoring sessions conducted live via Zoom with an
+    <strong>Experienced Certified Educator.</strong>
+  </h2>
+  
+<!--   <h1 style="color:red;">NEW VERSION BACKEND TEST</h1>  -->
+    
+
+</section>
 
 <!-- =======================
 PAYPAL UI
 ======================= -->
-<div class="paycontainer">
+ <div class="center-wrapper">
 
-  <select id="packageSelect">
-    <option value="test">2 Half Hour TEST Session — $2.00</option>
-    <option value="two">2 Half Hour Sessions — $75.00</option>
-    <option value="ten">10 Half Hour Sessions — $350.00</option>
-    <option value="twenty">20 Half Hour Sessions — $650.00</option>
-  </select>
+  <div class="paycontainer">
+    
+    <h2 style="margin-bottom: 20px;">Choose Your Tutoring Package</h2>
+  
+    <select id="packageSelect">
+      <option value="test">2 Half Hour TEST Session — $2.00</option>
+      <option value="two">2 Half Hour Sessions — $75.00</option>
+      <option value="ten">10 Half Hour Sessions — $350.00</option>
+      <option value="twenty">20 Half Hour Sessions — $650.00</option>
+    </select>
 
-  <div id="paypal-button-container"></div>
+    <div id="paypal-button-container"></div>
+    
+  </div>
+
 </div>
 
-<h2>Sessions: <span id="sessions">Loading...</span></h2>
+
+<!--  <h2>Sessions: <span id="sessions">Loading...</span></h2> -->
+
+  <div id="paymentSuccessBanner" class="notice notice-success hidden"></div>
+
+  <div id="bookingNotice" class="notice notice-neutral">
+    Please purchase a tutoring package to unlock scheduling.
+  </div>
+
+   <h2>Sessions Remaining: <span id="sessions">Loading...</span></h2>
+
+  <div id="sessionsNotice" class="notice notice-success hidden"></div>
+
+  <section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
+  
+<h2>Book a Session</h2>
+<h2>Booking Sessions Remaining: <span id="bookingSessions">Loading...</span></h2>
+<div 
+  class="calendly-inline-widget"
+  data-url="https://calendly.com/mathtutor-tomquinn/30min"
+  style="min-width:320px; height:750px;">
+</div>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+</section>
+
+<footer>
+ 
+   <p>
+      <!-- Online Math Tutoring via Zoom | -->
+      Phone: <a href="tel:12039627500" class="phone-link">203 962 7500</a> | 
+      Email: <a href="mailto:TomQuinnMathTutor@gmail.com" class="email-link">
+      TomQuinnMathTutor@gmail.com </a>
+    </p>
+    
+ 
+<div class="social-bar">
+  <!-- LinkedIn -->
+  <a class="social-icon" href="https://www.linkedin.com/in/mathtutor-tomquinn" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+  </a>
+
+  <!-- Facebook -->
+  <a class="social-icon" href="https://www.facebook.com/tom.quinn.1029" target="_blank">
+    <i class="fab fa-facebook facebook-icon"></i>
+  </a>
+</div>
+
+</footer>
 
 <!-- =======================
 PAYPAL SDK
