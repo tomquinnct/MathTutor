@@ -178,17 +178,30 @@ async function bootstrapSession() {
   console.log("Session initialized:", data);
 }
 
+
 // =======================
 // LOAD SESSIONS
 // =======================
-async function loadSessions() {
+
+
+async function refreshUIState() {
+
   const res = await fetch(`${API_BASE}/sessions`, {
     credentials: "include"
   });
 
   const data = await res.json();
 
-  document.getElementById("sessions").textContent = data.sessions;
+  const sessions = data.sessions ?? 0;
+
+  document.getElementById("sessions").textContent = sessions;
+  document.getElementById("bookingSessions").textContent = sessions;
+
+  if (sessions > 0) {
+    document.getElementById("bookingSection").classList.remove("hidden");
+    document.getElementById("bookingSection").classList.remove("locked");
+    document.getElementById("bookingNotice").classList.add("hidden");
+  }
 }
 
 // =======================
@@ -216,7 +229,9 @@ paypal.Buttons({
     return data.orderId;
   },
 
-  onApprove: async function (data) {
+onApprove: async function (data) {
+
+  try {
 
     const res = await fetch(`${API_BASE}/api/paypal/capture-order`, {
       method: "POST",
@@ -227,18 +242,39 @@ paypal.Buttons({
 
     const result = await res.json();
 
-    if (result.success) {
-      await loadSessions();
-      alert("Payment successful");
-    } else {
-      alert("Payment failed");
+    if (!result.success) {
+      throw new Error("Capture failed");
     }
-  },
 
-  onError: function (err) {
-    console.error(err);
-    alert("PayPal error");
+    // =======================
+    // UPDATE UI STATE
+    // =======================
+
+    document.getElementById("sessions").textContent = result.sessions;
+    document.getElementById("bookingSessions").textContent = result.sessions;
+
+    // unlock booking section
+    const bookingSection = document.getElementById("bookingSection");
+    bookingSection.classList.remove("hidden");
+    bookingSection.classList.remove("locked");
+
+    document.getElementById("bookingNotice").classList.add("hidden");
+
+    // success message
+    const banner = document.getElementById("paymentSuccessBanner");
+    banner.textContent = "Payment successful! You can now book your sessions.";
+    banner.classList.remove("hidden");
+
+    // optional: scroll to booking
+    bookingSection.scrollIntoView({ behavior: "smooth" });
+    
+    await refreshUIState();
+
+  } catch (err) {
+    console.error("Payment flow error:", err);
+    alert("Payment completed but update failed. Refresh page.");
   }
+}
 
 }).render("#paypal-button-container");
 
@@ -247,7 +283,7 @@ paypal.Buttons({
 // =======================
 document.addEventListener("DOMContentLoaded", async () => {
   await bootstrapSession();
-  await loadSessions();
+  await refreshUIState();
 });
 </script>
 
