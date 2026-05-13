@@ -119,7 +119,7 @@ PAYPAL UI
 
   <div id="sessionsNotice" class="notice notice-success hidden"></div>
 
-  <section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
+<section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
   
 <h2>Book a Session</h2>
 
@@ -127,6 +127,12 @@ PAYPAL UI
   Booking Sessions Remaining:
   <span id="bookingSessions">Loading...</span>
 </h2>
+
+
+<button id="primaryBookBtn" onclick="openBookingFlow()">
+  Book a Session
+</button>
+
 
 if (sessions <= 0) {
   document.getElementById("bookBtn").disabled = true;
@@ -136,6 +142,10 @@ if (sessions <= 0) {
 <button onclick="bookSession()" id="bookBtn">
   Book a Session
 </button>
+
+<p id="bookingHint">
+  Click below to schedule your next tutoring session using your available credits.
+</p>
 
  <h2>After booking, click ‘Go back to website’ to confirm your session</h2>
  
@@ -342,6 +352,69 @@ onApprove: async function (data) {
 }
 
 }).render("#paypal-button-container");
+
+
+// ==========================================
+// BOOK SESSIONS BASED ON CREDITS AVAILABLE 
+// ==========================================
+    
+async function openBookingFlow() {
+
+  const btn = document.getElementById("primaryBookBtn");
+  btn.disabled = true;
+  btn.innerText = "Checking sessions...";
+
+  try {
+
+    const res = await fetch(`${API_BASE}/sessions`, {
+      credentials: "include"
+    });
+
+    const data = await res.json();
+
+    // ✅ STEP 1: calculate availability
+    const available = data.available ?? data.sessions ?? 0;
+
+    // ✅ STEP 2: update UI dynamically (PUT IT HERE)
+    const hint = document.getElementById("bookingHint");
+    if (hint) {
+      hint.innerText = `You have ${available} session(s) ready to book.`;
+    }
+
+    // ❌ BLOCK if no sessions
+    if (available <= 0) {
+      alert("You have no sessions available.");
+      btn.disabled = false;
+      btn.innerText = "Book a Session";
+      return;
+    }
+
+    // reserve session
+    const hold = await fetch(`${API_BASE}/api/prepare-booking`, {
+      method: "POST",
+      credentials: "include"
+    });
+
+    const holdData = await hold.json();
+
+    if (!hold.ok) {
+      alert(holdData.error);
+      btn.disabled = false;
+      btn.innerText = "Book a Session";
+      return;
+    }
+
+    window.location.href = holdData.redirectUrl;
+
+  } catch (err) {
+
+    console.error(err);
+    alert("Unable to open booking.");
+
+    btn.disabled = false;
+    btn.innerText = "Book a Session";
+  }
+}
 
 // =======================
 // INIT
