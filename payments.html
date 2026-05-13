@@ -117,20 +117,13 @@ PAYPAL UI
 
    <h2>Sessions Remaining: <span id="sessions">Loading...</span></h2>
 
-  <div id="sessionsNotice" class="notice notice-success hidden"></div>
-
-<section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
-  
-<h2>Book a Session</h2>
-
 <h2>
   Booking Sessions Remaining:
   <span id="bookingSessions">Loading...</span>
 </h2>
 
-
 <button id="primaryBookBtn" onclick="openBookingFlow()">
-  Book a Session
+  Book available Session 
 </button>
 
 
@@ -139,15 +132,22 @@ if (sessions <= 0) {
   document.getElementById("bookBtn").innerText = "No Sessions Available";
 }
 
+<p id="bookingHint">
+  Click below to schedule your next tutoring session using your available credits.
+</p> 
+
 <button onclick="bookSession()" id="bookBtn">
   Book a Session
 </button>
 
-<p id="bookingHint">
-  Click below to schedule your next tutoring session using your available credits.
-</p>
-
  <h2>After booking, click ‘Go back to website’ to confirm your session</h2>
+
+  <div id="sessionsNotice" class="notice notice-success hidden"></div>
+
+<section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
+  
+<h2>Book a Session</h2>
+
  
 </section>
 
