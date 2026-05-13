@@ -122,15 +122,23 @@ PAYPAL UI
   <section id="bookingSection" class="locked hidden" style="max-width:900px; margin:auto;">
   
 <h2>Book a Session</h2>
-<h2>Booking Sessions Remaining: <span id="bookingSessions">Loading...</span></h2>
-<div 
-  class="calendly-inline-widget"
-  data-url="https://calendly.com/mathtutor-tomquinn/30min"
-  style="min-width:320px; height:750px;">
-</div>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<h2>
+  Booking Sessions Remaining:
+  <span id="bookingSessions">Loading...</span>
+</h2>
 
+if (sessions <= 0) {
+  document.getElementById("bookBtn").disabled = true;
+  document.getElementById("bookBtn").innerText = "No Sessions Available";
+}
+
+<button onclick="bookSession()" id="bookBtn">
+  Book a Session
+</button>
+
+ <h2>After booking, click ‘Go back to website’ to confirm your session</h2>
+ 
 </section>
 
 <footer>
@@ -183,6 +191,52 @@ async function bootstrapSession() {
 // LOAD SESSIONS
 // =======================
 
+async function bookSession() {
+
+  const btn = document.getElementById("bookBtn");
+
+  // prevent double-clicks immediately
+  btn.disabled = true;
+  btn.innerText = "Checking sessions...";
+
+  try {
+
+    const res = await fetch(`${API_BASE}/sessions`, {
+      credentials: "include"
+    });
+
+    const data = await res.json();
+    const sessions = data.sessions ?? 0;
+
+    // 🔒 BLOCK IF NO SESSIONS
+    if (sessions <= 0) {
+      alert("You have no sessions available.");
+      btn.disabled = true;
+      btn.innerText = "No Sessions Available";
+      return;
+    }
+
+    // mark as "holding" immediately
+    btn.innerText = "Redirecting to Calendly...";
+
+    // optional: tell backend you're starting booking flow
+    await fetch(`${API_BASE}/api/prepare-booking`, {
+      method: "POST",
+      credentials: "include"
+    });
+
+    // send user to Calendly
+    window.location.href = "https://calendly.com/mathtutor-tomquinn/30min";
+
+  } catch (err) {
+
+    console.error(err);
+
+    btn.disabled = false;
+    btn.innerText = "Book a Session";
+    alert("Unable to start booking. Try again.");
+  }
+}
 
 async function refreshUIState() {
 
@@ -197,10 +251,21 @@ async function refreshUIState() {
   document.getElementById("sessions").textContent = sessions;
   document.getElementById("bookingSessions").textContent = sessions;
 
-  if (sessions > 0) {
-    document.getElementById("bookingSection").classList.remove("hidden");
-    document.getElementById("bookingSection").classList.remove("locked");
-    document.getElementById("bookingNotice").classList.add("hidden");
+  const bookBtn = document.getElementById("bookBtn");
+
+  // 🔒 LOCK LOGIC
+  if (sessions <= 0) {
+    bookingState = "blocked";
+    bookBtn.disabled = true;
+    bookBtn.innerText = "No Sessions Available";
+    return;
+  }
+
+  // if sessions exist
+  if (bookingState !== "holding") {
+    bookingState = "available";
+    bookBtn.disabled = false;
+    bookBtn.innerText = "Book Session";
   }
 }
 

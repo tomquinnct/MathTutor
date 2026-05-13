@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Confirming Booking</title>
+</head>
+<body>
+
+<h2>Finalizing your session...</h2>
+
+<script>
+
+const API_BASE = "https://tutoring-backend-1-k361.onrender.com";
+
+async function confirmBooking() {
+
+  try {
+
+    const res = await fetch(`${API_BASE}/api/confirm-booking`, {
+      method: "POST",
+      credentials: "include"
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error);
+    }
+
+    document.body.innerHTML = `
+      <h2>Booking Confirmed ✅</h2>
+      <p>Your tutoring session has been saved.</p>
+      <a href="/payments.html">Return to dashboard</a>
+    `;
+
+  } catch (err) {
+
+    console.error(err);
+
+    document.body.innerHTML = `
+      <h2>Could not confirm booking</h2>
+      <p>Please contact support or try again.</p>
+    `;
+  }
+}
+
+confirmBooking();
+
+</script>
+
+</body>
+</html>
