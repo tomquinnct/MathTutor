@@ -132,7 +132,7 @@ PAYPAL UI
    Book a Session  
 </button>
 
- <h2>After booking, click ‘Go back to website’ to confirm your session</h2>
+ <!--  <h2>After booking, click ‘Go back to website’ to confirm your session</h2> -->
 
   <div id="sessionsNotice" class="notice notice-success hidden"></div>
 
@@ -231,6 +231,7 @@ async function bookSession() {
 
     // send user to Calendly
     window.location.href = "https://calendly.com/mathtutor-tomquinn/30min";
+    
 
   } catch (err) {
 
@@ -241,6 +242,7 @@ async function bookSession() {
     alert("Unable to start booking. Try again.");
   }
 }
+
 
 async function refreshUIState() {
 
@@ -408,6 +410,24 @@ async function openBookingFlow() {
   }
 }
 
+ window.addEventListener("pageshow", () => {
+
+  const btn = document.getElementById("bookBtn");
+
+  if (btn) {
+    btn.disabled = false;
+    btn.innerText = "Book a Session";
+  }
+
+  const primaryBtn = document.getElementById("primaryBookBtn");
+
+  if (primaryBtn) {
+    primaryBtn.disabled = false;
+    primaryBtn.innerText = "Book available Session";
+  }
+
+ });
+ 
 // =======================
 // INIT
 // =======================
