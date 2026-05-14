@@ -20,7 +20,7 @@
 .site-header {
 /*   background-color: #0f4f4a;  */ 
    background-color: #042314;
-   height: 400px;
+   height: auto;
     /*  height: auto;    important */
 }
 
