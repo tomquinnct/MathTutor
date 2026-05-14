@@ -124,18 +124,12 @@ PAYPAL UI
   Book available Session 
 </button>
 
-
-if (sessions <= 0) {
-  document.getElementById("bookBtn").disabled = true;
-  document.getElementById("bookBtn").innerText = "No Sessions Available";
-}
-
 <p id="bookingHint">
   
 </p>
  
 <a class="cta-button" href="payments.html">Book a Session</a>
-<button onclick="bookSession()" id="bookBtn">
+<button onclick="bookSession()" class="cta-button" id="bookBtn">
   Book a Session
 </button>
 
