@@ -133,7 +133,7 @@ h1, h2, h3 {
 
 /*  .paycontainer {
   max-width: 400px;
-  height: 400px; /* adjust as needed */
+  height: 400px; 
   margin: 20px auto;
   padding: 20px;
   background: #f9fdfc;
@@ -190,7 +190,7 @@ h1, h2, h3 {
   padding: 10px;
   margin-bottom: 20px;
   border: 2px solid #0f4f4a;
-  border-radius: 8px;
+  border-radius: 12px;
   background-color: #f9fdfc;
   cursor: pointer;
 }
