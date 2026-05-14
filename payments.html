@@ -129,7 +129,7 @@ PAYPAL UI
 </p>
  
 <button onclick="bookSession()" class="cta-button" id="bookBtn">
- '  Book a Session  '
+   Book a Session  
 </button>
 
  <h2>After booking, click ‘Go back to website’ to confirm your session</h2>
@@ -175,6 +175,8 @@ PAYPAL SDK
 <script>
 
 const API_BASE = "https://tutoring-backend-1-k361.onrender.com";
+
+let bookingState = "available";
 
 // =======================
 // SESSION BOOTSTRAP (FIXED FLOW)
@@ -250,7 +252,6 @@ async function refreshUIState() {
 
   const sessions = data.sessions ?? 0;
 
-  document.getElementById("sessions").textContent = sessions;
   document.getElementById("bookingSessions").textContent = sessions;
 
   const bookBtn = document.getElementById("bookBtn");
@@ -317,7 +318,6 @@ onApprove: async function (data) {
     // UPDATE UI STATE
     // =======================
 
-    document.getElementById("sessions").textContent = result.sessions;
     document.getElementById("bookingSessions").textContent = result.sessions;
 
     // unlock booking section
