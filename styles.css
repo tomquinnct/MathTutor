@@ -25,7 +25,7 @@
 }
 
 .site-header img {
-  width: 100%;
+  width: 40%;
   height: auto;      
   justify-content: center;
       /*  object-fit: cover;     keeps it looking like a banner */
