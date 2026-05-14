@@ -28,8 +28,8 @@
   width: 100%;
   height: auto;      
   justify-content: center;
-  /*      object-fit: cover;   keeps it looking like a banner */
-  object-fit: contain; 
+       object-fit: cover;   /*   keeps it looking like a banner */
+  /*  object-fit: contain; */
   display: block;
 }
 
