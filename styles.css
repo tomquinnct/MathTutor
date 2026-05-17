@@ -44,12 +44,12 @@
 .site-header a {
   display: block;
   background-color: #042314;
- /*   background-color:  hsl(174, 68%, 18%);   */
-  color: white;  
+  color: white;
   margin: 0 10px;
   text-decoration: none;
   font-size: 16px;
   padding-bottom: 0;
+  line-height: 0;
 }
 
 body {
