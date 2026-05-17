@@ -368,7 +368,8 @@ footer p {
   }
 
   .facebook-link {
-    padding-top: 24px;
+  /*  padding-top: 24px; */
+    margin-top: 12px;
     width: 34px;
     height: 34px;
   }
