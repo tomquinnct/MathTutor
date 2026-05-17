@@ -367,7 +367,8 @@ footer p {
     height: 18px;
   }
 
-  .facebook-icon {
-    font-size: 18px;
+  .facebook-link {
+    padding-top: 12px;
   }
+
 }
