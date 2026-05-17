@@ -90,11 +90,11 @@ nav {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 12px 18px;
   margin: 0px 0 5px 0;
   background-color: #042314;
   border-bottom: 1px solid #06301C;
-  padding: 10px 12px;
+  padding: 10px 16px;
 }
 
 /* 
