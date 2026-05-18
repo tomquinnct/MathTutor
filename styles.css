@@ -19,8 +19,10 @@
 
 .site-header {
 /*   background-color: #0f4f4a;  */ 
+   display: block;
    background-color: #042314;
    height: auto;
+   width: 100%;
    text-align: center;
     /*  height: auto;    important */
 }
@@ -32,6 +34,7 @@
   object-fit: contain;  
   display: block;
 }
+
 
 /*
 .site-header nav {
