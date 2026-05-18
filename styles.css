@@ -44,7 +44,7 @@
 }
 */
 
-.site-header a {
+.site-header > a {
   display: block;
   background-color: #042314;
   color: white;
