@@ -28,7 +28,7 @@
 }
 
 .site-header img {
-  width: 40%;
+  width: 50%;
   height: auto;      
   margin: 0 auto;   /* this keeps the picture in the center */
   object-fit: contain;  
