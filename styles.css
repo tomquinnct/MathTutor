@@ -18,9 +18,10 @@
 
 
 .site-header {
-/*   background-color: #0f4f4a;  */ 
    display: block;
-   background-color: #042314;
+/*   background-color: #0f4f4a; 
+   background-color: #BDCEED; */ 
+   background-color:   #00155c; 
    height: auto;
    width: 100%;
    text-align: center;
@@ -46,7 +47,8 @@
 
 .site-header > a {
   display: block;
-  background-color: #042314;
+  /* background-color: #042314; */
+  background-color: transparent;
   color: white;
   margin: 0 10px;
   text-decoration: none;
@@ -61,7 +63,10 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   color:  #0f4f4a;
-  background: #eef8f7;
+  color:  black;
+  background-color: #C1CDEC;
+/*   background-color: #D3D9EE; */  
+  
 }
 
 /* Center page content feel */
@@ -73,7 +78,7 @@ section {
 .hero {
   text-align: center;
   padding-top: 0px; 
-  padding-bottom: 20px; 
+  padding-bottom: 0px; 
  /*  padding-top: 20px;  */
 /*  background-image: url("images/Mathematics tutor promotion with call-to-action.png"); */
   background-size: cover;
@@ -96,7 +101,9 @@ nav {
   flex-wrap: wrap;
   gap: 12px 18px;
   margin: 0px 0 5px 0;
-  background-color: #042314;
+  background-color:   #00155c; 
+ /* background-color: #042314; */
+ 
   border-bottom: 1px solid #06301C;
   padding: 10px 16px;
 }
@@ -106,7 +113,9 @@ nav a {
   margin: 0 12px;
   text-decoration: none;
   font-size: 18px;
+  
   color: white;
+  
   font-weight: 500;
 }
  
@@ -120,7 +129,9 @@ nav a:hover {
   padding: 12px 18px;
   margin: 6px;
   background: #0f4f4a;
+  
   color: white;
+  
   border-radius: 6px;
   text-decoration: none;
   font-weight: 500;
@@ -270,25 +281,26 @@ h1, h2, h3 {
   max-width: 260px;   /* smaller width */
   text-align: center;
   font-weight: bold;
-  margin: 20px auto;
-  padding: 10px 12px; /* reduced padding */
+  margin: 10px auto;  
+  padding: 5px 6px; /* reduced padding */
   border: 6px solid #0f4f4a; /* thinner border */
   border-radius: 10px;
   background: #eef8f7;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
   font-size: 15px;
-  color: #0f4f4a;
+  /* color: #0f4f4a; */
+   color: red;
 }
 
 /* =========================
    FOOTER CONTAINER
 ========================= */
 footer {
-/* background: #0f4f4a  matches your green theme */
-  background-color: #0f4f4a; 
-  color:  white;
-  text-align: center;
-  padding: 10px 15px;
+background-color: #00155c;
+color: white;
+text-align: center;
+padding: 0;
+margin: 0;
 }
 
 /* =========================
@@ -392,4 +404,23 @@ footer p {
 
   }
 
+}
+
+.footer-image {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;   /* removes small gaps below images */
+}
+
+.footer-image picture {
+    display: block;
+    width: 100%;
+}
+
+.footer-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
 }
